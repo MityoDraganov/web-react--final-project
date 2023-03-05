@@ -1,6 +1,6 @@
 import './UserForms.css'
 
-export const UserCreate = () => {
+export const ItemCreate = () => {
   return (
     <>
       <div className="overlay">
@@ -9,7 +9,7 @@ export const UserCreate = () => {
           <div className="user-container">
             <header className="headers">
 
-              <h2>Edit User/Add User</h2>
+              <h2>Create / Edit video</h2>
 
             </header>
 
@@ -26,12 +26,12 @@ export const UserCreate = () => {
               <button className="btn-close">
                 X
               </button>
-
+              
               <div className="profilepicture-wraper">
-                <img className="profilepicture-frame" src='https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg' />
+                <img className="tumbnailpicture-frame" src='https://static.thenounproject.com/png/4460304-200.png' alt='tumbnail icon'/>
               </div>
                 <div className="form-group">
-                  <label htmlFor="firstName">First name</label>
+                  <label htmlFor="firstName">Video title</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-user"></i>
@@ -42,7 +42,7 @@ export const UserCreate = () => {
 
 
                 <div className="form-group">
-                  <label htmlFor="lastName">Last name</label>
+                  <label htmlFor="lastName">Video Url</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-user"></i>
@@ -52,7 +52,7 @@ export const UserCreate = () => {
                 </div>
 
                 <div className="form-group long-line">
-                <label htmlFor="imageUrl">Image Url</label>
+                <label htmlFor="imageUrl">Video Tumbnail Url</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-image"></i>
@@ -63,7 +63,7 @@ export const UserCreate = () => {
 
 
               <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">Video description</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
@@ -72,7 +72,7 @@ export const UserCreate = () => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="Passowrd">Passowrd</label>
+                  <label htmlFor="Passowrd">keywords to describe video</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
@@ -81,15 +81,7 @@ export const UserCreate = () => {
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="RePassword">Repeat Password</label>
-                  <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-envelope"></i>
-                    </span>
-                    <input className="form-input" id="rePassword" name="rePassword" type="text" />
-                  </div>
-                </div>
+                
 
 
                 <div id="form-actions">

@@ -52,3 +52,25 @@ body{
     height: 100px;
 }
 
+.tumbnailpicture-frame{
+    
+   
+    float: right;
+    padding: 30px;
+    padding-bottom: 100%;
+   
+
+    height: 100px;
+
+}
+
+.btn-close{
+    border-radius: 25px;
+    height: 30px;
+    float:inline-end;
+
+    padding: 30px;
+
+    display: block;
+    
+}
