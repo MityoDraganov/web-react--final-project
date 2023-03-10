@@ -1,0 +1,30 @@
+.navigation-ul{
+    margin: 0px;
+
+    width: 100%;
+    background-color: black;
+    display: inline-block;
+    list-style: none;
+}
+
+.navigation-li{
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    display: inline-block;
+    padding: 20px;
+}
+
+
+.navigation-a{
+    text-decoration: none;
+    color: white;
+}
+
+.navigation-li :hover{
+    color: red;
+}
+
+.navigation-nav{
+    padding: 0px;
+}

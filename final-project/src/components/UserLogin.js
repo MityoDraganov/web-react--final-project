@@ -11,7 +11,7 @@ export const UserLogin = () =>{
           <div className="user-container">
             <header className="headers">
 
-              <h2>Edit User/Add User</h2>
+              <h2>Login</h2>
 
             </header>
 

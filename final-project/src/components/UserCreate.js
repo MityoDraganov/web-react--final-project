@@ -1,6 +1,7 @@
 import './UserForms.css'
 
 export const UserCreate = () => {
+  
   return (
     <>
       <div className="overlay">
@@ -9,7 +10,7 @@ export const UserCreate = () => {
           <div className="user-container">
             <header className="headers">
 
-              <h2>Edit User/Add User</h2>
+              <h2>Register</h2>
 
             </header>
 
