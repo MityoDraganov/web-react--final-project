@@ -1,8 +1,52 @@
 import './UserForms.css'
+import {useState, useEffect} from 'react'
+import { userHandler } from '../service/formFetchService';
+
+
 
 export const UserCreate = () => {
+
+
   
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    imageUrl: '',
+    email: '',
+    password: '',
+    rePassword: '',
+  })
+
   const onChangeHandler = (e) =>{
+    //console.log('change');
+    const componentName = e.target.name
+    //console.log(componentName)
+    const componentValue = e.target.value
+    //console.log(componentValue);
+    setValues(state => ({...state, [componentName]: [componentValue]}))
+  }
+
+
+  const onSubmitHandler = async (e) =>{
+    e.preventDefault()
+    console.log(e.target)
+    const formData = new FormData(e.target)
+    
+    
+    const {firstName, lastName, imageUrl, email, password} = Object.fromEntries(formData.entries())
+    
+    const body = {
+      firstName,
+      lastName,
+      imageUrl,
+      email,
+    }
+    console.log('body')
+    console.log(body)
+    const response = await userHandler('POST', body)
+    console.log(response)
+  }
+
   return (
     <>
       <div className="overlay">
@@ -16,7 +60,7 @@ export const UserCreate = () => {
             </header>
 
 
-            <form className="user-form">
+            <form className="user-form" onChange={onChangeHandler} onSubmit = {onSubmitHandler}>
 
               <div className="form-error">
                 <p>Last name should be at least 3 characters long!</p>
@@ -25,7 +69,7 @@ export const UserCreate = () => {
             
                 <div className="form-row">
 
-              <button className="btn-close">
+              <button className="btn-close" type="button">
                 X
               </button>
 
@@ -59,7 +103,7 @@ export const UserCreate = () => {
                   <span>
                     <i className="fa-solid fa-image"></i>
                   </span>
-                  <input className="form-input" id="imageUrl" name="imageUrl" type="text" />
+                  <input className="form-input" id="imageUrl" name="imageUrl" type="text"  />
                 </div>
               </div>
 
