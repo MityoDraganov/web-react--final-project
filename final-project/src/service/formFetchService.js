@@ -1,7 +1,8 @@
-const baseUrl = 'http://localhost:3005/api'
+const baseUrl = 'http://localhost:3030/users'
 
 export const userHandler = async (method, body) =>{
-    const response = await fetch(`${baseUrl}/users`,{
+    const response = await fetch(baseUrl,{
+        mode: 'no-cors',
         method: method,
         body: JSON.stringify(body),
         headers:{
