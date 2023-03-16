@@ -1,6 +1,28 @@
-import './UserForms.css'
+import "./UserForms.css"
+
+import {createItem} from "../service/itemsService"
 
 export const ItemCreate = ({backingFunc}) => {
+
+
+  const onSubmitHandler = async (e) =>{
+    e.preventDefault()
+    console.log(e.target)
+
+    const formData = new FormData(e.target)
+    const {title, description, imageUrl, keywords} = Object.fromEntries(formData.entries())
+    
+    const body = {
+      title,
+      description,
+      imageUrl,
+      keywords
+    }
+
+    const response = await createItem('POST', body)
+    console.log(response)
+  }
+
   return (
     <>
       <div className="overlay">
@@ -9,12 +31,12 @@ export const ItemCreate = ({backingFunc}) => {
           <div className="user-container">
             <header className="headers">
 
-              <h2>Create / Edit video</h2>
+              <h2>Create  article</h2>
 
             </header>
 
 
-            <form className="user-form">
+            <form className="user-form" onSubmit = {onSubmitHandler}>
 
               <div className="form-error">
                 <p>Last name should be at least 3 characters long!</p>
@@ -31,53 +53,48 @@ export const ItemCreate = ({backingFunc}) => {
                 <img className="tumbnailpicture-frame" src='https://static.thenounproject.com/png/4460304-200.png' alt='tumbnail icon'/>
               </div>
                 <div className="form-group">
-                  <label htmlFor="firstName">Video title</label>
+                  <label htmlFor="firstName">Title</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="firstName" name="firstName" type="text" />
+                    <input className="form-input" id="title" name="title" type="text" />
                   </div>
                 </div>
 
 
-                <div className="form-group">
-                  <label htmlFor="lastName">Video Url</label>
-                  <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-user"></i>
-                    </span>
-                    <input className="form-input" id="lastName" name="lastName" type="text" />
-                  </div>
-                </div>
+                
 
-                <div className="form-group long-line">
-                <label htmlFor="imageUrl">Video Tumbnail Url</label>
-                <div className="input-wrapper">
-                  <span>
-                    <i className="fa-solid fa-image"></i>
-                  </span>
-                  <input className="form-input" id="imageUrl" name="imageUrl" type="text" />
-                </div>
-              </div>
+                
 
 
               <div className="form-group">
-                  <label htmlFor="email">Video description</label>
+                  <label htmlFor="email">Description</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="email" name="email" type="text" />
+                    <input className="form-input" id="description" name="description" type="text" />
                   </div>
                 </div>
+
+                <div className="form-group">
+                  <label htmlFor="firstName">ImageUrl</label>
+                  <div className="input-wrapper">
+                    <span>
+                      <i className="fa-solid fa-user"></i>
+                    </span>
+                    <input className="form-input" id="imageUrl" name="imageUrl" type="text" />
+                  </div>
+                </div>
+
                 <div className="form-group">
                   <label htmlFor="Passowrd">keywords to describe video</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="password" name="password" type="text" />
+                    <input className="form-input" id="keywords" name="keywords" type="text" />
                   </div>
                 </div>
 
