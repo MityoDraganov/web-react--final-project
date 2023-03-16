@@ -1,10 +1,10 @@
 import './UserForms.css'
 import {useState, useEffect} from 'react'
 import { userHandler } from '../service/formFetchService';
+import {Link, useNavigate} from 'react-router-dom'
 
 
-
-export const UserCreate = () => {
+export const UserCreate = ({backingFunc}) => {
 
 
   
@@ -16,6 +16,9 @@ export const UserCreate = () => {
     password: '',
     rePassword: '',
   })
+
+
+
 
   const onChangeHandler = (e) =>{
     //console.log('change');
@@ -63,6 +66,8 @@ export const UserCreate = () => {
   console.log(data)
   }
 
+
+
   return (
     <>
       <div className="overlay">
@@ -85,7 +90,7 @@ export const UserCreate = () => {
             
                 <div className="form-row">
 
-              <button className="btn-close" type="button">
+              <button className="btn-close" type="button" onClick={backingFunc}>
                 X
               </button>
 
@@ -158,7 +163,7 @@ export const UserCreate = () => {
                 <button id="action-save" className="btn" type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button">
+                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
                   Cancel
                 </button>
               </div>

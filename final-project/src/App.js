@@ -3,28 +3,35 @@ import './App.css';
 import { ItemCreate } from './components/ItemCreate';
 import { UserCreate } from './components/UserCreate';
 import { UserLogin } from './components/UserLogin';
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 import { Navigation } from './components/Navigation';
 import { HomePage } from './components/HomePage';
+import { ItemDashboard } from './components/ItemsDashboard/ItemDashboard';
 function App() {
+
+  const navigate = useNavigate();
+  const onBackHangler = () =>{
+    navigate(-1)
+  }
+
   return (
     <>
     <Navigation />
 
     <Routes>
-      <Route path='/' element = {<HomePage />} />
+      <Route path='/' element = {<HomePage backingFunc = {onBackHangler} />} />
 
 
       {/* Users */}
 
-      <Route path='/users/register' element = {<UserCreate />} />
-      <Route path='/users/login' element = {<UserLogin />} />
+      <Route path='/users/register' element = {<UserCreate backingFunc = {onBackHangler} />} />
+      <Route path='/users/login' element = {<UserLogin backingFunc = {onBackHangler} />} />
 
 
       {/* Items */}
 
-      <Route path='/articles/create' element = {<ItemCreate />} />
-      <Route path='/articles/dashboard' element = {<ItemCreate />} />
+      <Route path='/articles/create' element = {<ItemCreate backingFunc = {onBackHangler} />} />
+      <Route path='/articles/dashboard' element = {<ItemDashboard backingFunc = {onBackHangler} />} />
 
     </Routes>
 

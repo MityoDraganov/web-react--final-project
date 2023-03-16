@@ -1,6 +1,6 @@
 import "./UserForms.css"
 
-export const UserLogin = () =>{
+export const UserLogin = ({backingFunc}) =>{
 
     return(
 
@@ -26,7 +26,7 @@ export const UserLogin = () =>{
             
                 <div className="form-row">
 
-              <button className="btn-close">
+              <button className="btn-close" onClick={backingFunc} type="button">
                 X
               </button>
 
@@ -57,7 +57,7 @@ export const UserLogin = () =>{
                 <button id="action-save" className="btn" type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button">
+                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
                   Cancel
                 </button>
               </div>

@@ -1,6 +1,6 @@
 import './UserForms.css'
 
-export const ItemCreate = () => {
+export const ItemCreate = ({backingFunc}) => {
   return (
     <>
       <div className="overlay">
@@ -23,7 +23,7 @@ export const ItemCreate = () => {
             
                 <div className="form-row">
 
-              <button className="btn-close">
+              <button className="btn-close" onClick={backingFunc}>
                 X
               </button>
               
@@ -88,7 +88,7 @@ export const ItemCreate = () => {
                 <button id="action-save" className="btn" type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button">
+                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
                   Cancel
                 </button>
               </div>
