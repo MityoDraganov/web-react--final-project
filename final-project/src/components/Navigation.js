@@ -6,10 +6,11 @@ export const Navigation = () => {
 
 
         <ul className={styles['navigation-ul']}>
-            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="/">Home</Link></li>
-            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="/users/register">Register</Link></li>
-            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="/users/login">Login</Link></li>
-
+            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="">Home</Link></li>
+            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="articles/dashboard">Dashboard</Link></li>
+            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="articles/create">Create article</Link></li>
+            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="users/register">Register</Link></li>
+            <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="users/login">Login</Link></li>
         </ul>
 
 

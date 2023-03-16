@@ -13,10 +13,18 @@ function App() {
 
     <Routes>
       <Route path='/' element = {<HomePage />} />
+
+
+      {/* Users */}
+
       <Route path='/users/register' element = {<UserCreate />} />
       <Route path='/users/login' element = {<UserLogin />} />
-      <Route path='/item/create' element = {<ItemCreate />} />
 
+
+      {/* Items */}
+
+      <Route path='/articles/create' element = {<ItemCreate />} />
+      <Route path='/articles/dashboard' element = {<ItemCreate />} />
 
     </Routes>
 

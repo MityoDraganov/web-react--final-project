@@ -1,8 +1,8 @@
 const Router = require('express').Router()
+const userControler = require("./controlers/userControler")
 
 Router.post('/users', (req,res)=>{
-    res.send('Home Page')
-    res.end()
+    userControler.userCreationPost(req,res)
 })
 
 

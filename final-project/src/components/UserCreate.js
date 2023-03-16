@@ -36,15 +36,31 @@ export const UserCreate = () => {
     const {firstName, lastName, imageUrl, email, password} = Object.fromEntries(formData.entries())
     
     const body = {
-      firstName,
-      lastName,
-      imageUrl,
-      email,
+      firstName: firstName,
+      lastName: lastName,
+      imageUrl: imageUrl,
+      email: email,
     }
+    console.log('body')
+    console.log(body)
+    console.log('body')
+    /*
     console.log('body')
     console.log(body)
     const response = await userHandler('POST', body)
     console.log(response)
+    */
+
+    const response = await fetch('http://localhost:3030/users'
+    ,{
+      method: "POST",
+      body: JSON.stringify(body),
+      headers:{
+          'Content-type': 'application/json'
+      }
+  })
+  const data = await response.json()
+  console.log(data)
   }
 
   return (

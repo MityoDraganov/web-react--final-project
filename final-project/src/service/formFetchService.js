@@ -1,8 +1,8 @@
 const baseUrl = 'http://localhost:3030/users'
 
-export const userHandler = async (method, body) =>{
+    async function userHandler(method, body){
     const response = await fetch(baseUrl,{
-        mode: 'no-cors',
+        
         method: method,
         body: JSON.stringify(body),
         headers:{
@@ -12,3 +12,5 @@ export const userHandler = async (method, body) =>{
     const data = await response.json()
     return data;
 }
+
+export {userHandler}    
