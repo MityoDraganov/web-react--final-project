@@ -11,8 +11,14 @@ const itemPost = async(req,res) =>{
         keywords: data.keywords
     })
     await article.save()
-    //res.send(JSON.stringify(article))
-    res.redirect("/articles/dashboard")
+    res.send(article)
+    res.end()
 }
 
-module.exports = {itemPost}
+const getAllItems = async (req, res) =>{
+    const items = await articlesModel.find()
+    console.log(items)
+    res.send(JSON.stringify(items))
+}
+
+module.exports = {itemPost, getAllItems}

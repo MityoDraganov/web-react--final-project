@@ -1,0 +1,17 @@
+.dashboard-item-div{
+    border-radius: 25px;
+    margin: 30px;
+    padding: 20px;
+    background-image: linear-gradient(to right top, #c59cf9, #c496f9, #c38ff9, #c289f9, #c282f9, #c67ff9, #ca7dfa, #ce7afa, #d77cfb, #e07dfc, #e97ffc, #f281fd);
+    width: 20%;
+}
+
+.dashboard-item-btn{
+    border-radius: 25px;
+    height: 30px;
+   width: 80%;
+}
+
+.dashboard-item-img{
+    width: 80%;
+}

@@ -1,9 +1,10 @@
 const userModel = require("../models/user")
 
-function userCreationPost(req,res){
+    async function userCreationPost(req,res){
     const data = req.body
     console.log(data)
-    const toSend = JSON.stringify(data)
+    const user = await userModel.create({...data})
+    const toSend = JSON.stringify(user)
     /*
     res.set({
         "Content-Type": "application/json",

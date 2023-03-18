@@ -2,12 +2,14 @@ const baseURL = "http://localhost:3030/items"
 
 
 
-export const getAllItems = () => {
-
+export const getAllItems = async () => {
+    const response = await fetch(baseURL);
+    const result = await response.json()
+    return result
 }
 
 export const createItem = async (method, body) => {
-    console.log(body)
+    //console.log(body)
     const response = await fetch(`${baseURL}/create`, {
         method: method,
         body: JSON.stringify(body),

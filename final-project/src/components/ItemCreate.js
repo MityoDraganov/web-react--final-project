@@ -1,13 +1,15 @@
 import "./UserForms.css"
 
 import {createItem} from "../service/itemsService"
+import {useNavigate} from "react-router-dom"
+
 
 export const ItemCreate = ({backingFunc}) => {
-
+  const navigate = useNavigate()
 
   const onSubmitHandler = async (e) =>{
     e.preventDefault()
-    console.log(e.target)
+    //console.log(e.target)
 
     const formData = new FormData(e.target)
     const {title, description, imageUrl, keywords} = Object.fromEntries(formData.entries())
@@ -20,7 +22,9 @@ export const ItemCreate = ({backingFunc}) => {
     }
 
     const response = await createItem('POST', body)
+    console.log("response")
     console.log(response)
+    navigate("/articles/dashboard")
   }
 
   return (

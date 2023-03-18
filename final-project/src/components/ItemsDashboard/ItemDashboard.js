@@ -1,7 +1,28 @@
 import {ItemRenderer} from "./Item"
-
+import {useState, useEffect} from "react"
+import {getAllItems} from "../../service/itemsService"
 export const ItemDashboard = () =>{
+
+
+    const [articles, setArticles] = useState([]);
+    
+    useEffect(() => {
+        getAllItems()
+        .then(res => {
+            console.log("render")
+            setArticles(Object.values(res))
+        })
+
+    }, [])
+
+    
+
+
     return(
-        <ItemRenderer title="Some title" imageUrl={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZimjmdjhD4SyKDryrgXlL94tBhIdR8jWjlw&usqp=CAU"}/>
+        <>
+        {articles.map(x =>{
+            return(<ItemRenderer key={x._id} {...x} />)
+        })}
+        </>
     )
 }

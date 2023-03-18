@@ -15,6 +15,10 @@ Router.post('/items/create', (req,res)=>{
 
 })
 
+Router.get('/items', (req, res) =>{
+    itemControler.getAllItems(req, res)
+})
+
 
 
 

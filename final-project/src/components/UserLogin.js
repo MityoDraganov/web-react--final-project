@@ -48,7 +48,7 @@ export const UserLogin = ({backingFunc}) =>{
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="email" name="email" type="text" />
+                    <input className="form-input" id="email" name="email" type="password" />
                   </div>
                 </div>
 
