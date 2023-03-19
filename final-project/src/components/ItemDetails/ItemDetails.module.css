@@ -1,18 +1,26 @@
-.dashboard-item-div{
+.details-item-div{
+    
     border-radius: 25px;
-    margin: 30px;
+    margin: auto;
     padding: 20px;
     background-image: linear-gradient(to right top, #c59cf9, #c496f9, #c38ff9, #c289f9, #c282f9, #c67ff9, #ca7dfa, #ce7afa, #d77cfb, #e07dfc, #e97ffc, #f281fd);
-    width: 20%;
+    width: 30%;
+    padding-top: 30px;
+    
+    
+
 }
 
-.dashboard-item-btn{
+.details-item-btn{
     border-radius: 25px;
     height: 30px;
    width: 80%;
 }
 
-.dashboard-item-img{
+.details-item-img{
     width: 80%;
 }
-
+.details-item-txtarea{
+    display:inline-block;
+        vertical-align:middle;
+}

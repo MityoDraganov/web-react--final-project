@@ -1,5 +1,6 @@
 
 import './App.css';
+import { useEffect, useState } from 'react';
 import { ItemCreate } from './components/ItemCreate';
 import { UserCreate } from './components/UserCreate';
 import { UserLogin } from './components/UserLogin';
@@ -7,6 +8,10 @@ import {Routes, Route, useNavigate} from 'react-router-dom'
 import { Navigation } from './components/Navigation';
 import { HomePage } from './components/HomePage';
 import { ItemDashboard } from './components/ItemsDashboard/ItemDashboard';
+import { ItemDetails} from './components/ItemDetails/ItemDetails'
+
+import {DetailedItemContext} from "./contexts/DetailedItemContext"
+import { getOneItem } from './service/itemsService';
 function App() {
 
   const navigate = useNavigate();
@@ -14,9 +19,12 @@ function App() {
     navigate(-1)
   }
 
+
+
   return (
     <>
     <Navigation />
+
 
     <Routes>
       <Route path='/' element = {<HomePage backingFunc = {onBackHangler} />} />
@@ -33,7 +41,11 @@ function App() {
       <Route path='/articles/create' element = {<ItemCreate backingFunc = {onBackHangler} />} />
       <Route path='/articles/dashboard' element = {<ItemDashboard backingFunc = {onBackHangler} />} />
 
+      <Route path='/articles/:id' element = {<ItemDetails />}/>
     </Routes>
+
+
+
 
     </>
   );

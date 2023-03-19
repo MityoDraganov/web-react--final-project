@@ -20,3 +20,9 @@ export const createItem = async (method, body) => {
     const data = response.json()
     return data
 }
+
+export const getOneItem = async (id) =>{
+    const response = await fetch(`${baseURL}/${id}`)
+    const data = await response.json()
+    return data
+}

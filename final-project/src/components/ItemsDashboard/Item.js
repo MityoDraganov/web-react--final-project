@@ -1,11 +1,24 @@
-import styles from "./Item.module.css"
+import { useContext } from "react"
+import { DetailedItemContext } from "../../contexts/DetailedItemContext"
 
+import { getOneItem } from "../../service/itemsService"
+import styles from "./Item.module.css"
+import {useNavigate} from 'react-router-dom'
 export const ItemRenderer = ({_id,
 title,
 description,
 imageUrl,
 keywords,
 comments, }) =>{
+
+    const navigate = useNavigate()
+
+    const detailsClickHandler = async (_id) =>{
+
+        navigate(`/articles/${_id}`)
+    }
+
+
     return(
 
 
@@ -15,7 +28,7 @@ comments, }) =>{
             <p><span>Title:</span> {title}</p>
             
             <footer>
-            <button className={styles['dashboard-item-btn']}>Details</button>
+            <button className={styles['dashboard-item-btn']} onClick = {() => detailsClickHandler(_id)}>Details</button>
             </footer>
         </div>
 

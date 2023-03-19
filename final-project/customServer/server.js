@@ -4,6 +4,8 @@ const cors = require('cors')
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 
+//const cookieParser = require("cookie-parser")
+
 const app = express();
 
 
@@ -15,7 +17,7 @@ const corsOptions = {
 app.use(cors({ origin: "*", credentials: true }));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+//app.use(cookieParser())
 async function main(){
     mongoose.set('strictQuery', false)
     await mongoose.connect('mongodb://127.0.0.1:27017/Teachnigo')
