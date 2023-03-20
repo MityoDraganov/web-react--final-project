@@ -5,7 +5,7 @@ const userControler = require("./controlers/userControler")
 const itemControler = require("./controlers/itemControler")
 
 
-Router.post('/users', (req,res)=>{
+Router.post('/users/register', (req,res)=>{
     userControler.userCreationPost(req,res)
 })
 

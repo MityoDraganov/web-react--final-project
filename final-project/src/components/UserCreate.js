@@ -1,6 +1,6 @@
 import './UserForms.css'
 import {useState, useEffect} from 'react'
-import { userHandler } from '../service/formFetchService';
+import { userCreate } from '../service/formFetchService';
 import {Link, useNavigate} from 'react-router-dom'
 
 
@@ -29,7 +29,7 @@ export const UserCreate = ({backingFunc}) => {
     e.preventDefault()
     
 
-    const data = await userHandler('POST', values)
+    const data = await userCreate('POST', values)
     /*
     const response = await fetch('http://localhost:3030/users'
     ,{

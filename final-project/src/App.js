@@ -19,7 +19,7 @@ function App() {
     navigate(-1)
   }
 
-
+  const [auth, setAuth] = useState({})
 
   return (
     <>

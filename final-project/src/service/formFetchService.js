@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3030/users'
 
-    async function userHandler(method, body){
-    const response = await fetch(baseUrl,{
+    async function userCreate(method, body){
+    const response = await fetch(`${baseUrl}/registers`,{
         
         method: method,
         body: JSON.stringify(body),
@@ -13,4 +13,4 @@ const baseUrl = 'http://localhost:3030/users'
     return data;
 }
 
-export {userHandler}    
+export {userCreate}    
