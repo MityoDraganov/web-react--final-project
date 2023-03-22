@@ -9,12 +9,25 @@ Router.post('/users/register', (req,res)=>{
     userControler.userCreationPost(req,res)
 })
 
+Router.post('/users/login', (req,res)=>{
+    userControler.userLogin(req,res)
+})
+
 
 //item create
 Router.post('/items/create', (req,res)=>{
 
     itemControler.itemPost(req,res)
 
+})
+Router.put('/items/edit/:id', (req,res)=>{
+
+    itemControler.itemEdit(req,res)
+
+})
+
+Router.delete('/items/delete/:id', (req, res) => {
+    itemControler.itemDelete(req,res)
 })
 
 

@@ -14,27 +14,36 @@
 
     const body = Object.assign({}, rest);
     const user = await userModel.create({...body, "password": hash})
-    //const toSend = JSON.stringify(user)
-    /*
-    res.set({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-    });
-    */
 
-    const token = await jwtPromises.sign({username: rest.username}, secret)
+    const token = await jwtPromises.sign({email: rest.email}, secret)
     res.send(JSON.stringify({
-        'token': token,
-        'firstName': rest.firstName,
-        'lastName': rest.lastName,
-        'imageUrl': rest.imageUrl,
-        'email' : rest.email
+        "token": token,
+        "_id": user._id,
+        //'firstName': rest.firstName,
+        //'lastName': rest.lastName,
+        //'imageUrl': rest.imageUrl,
+        //'email' : rest.email
 }))
     res.end()
 }
 
-    async function useLogin(req,res){
-        const data = req.body
+    async function userLogin(req,res){
+        const {email, password} = {...req.body}
+        
+        const user = await userModel.find({email: email}).lean()
+        const token = await jwtPromises.sign({email: email}, secret)
+
+        console.log('user')
+
+        console.log(user)
+        res.send(JSON.stringify({
+        "token": token,
+        "_id": user[0]._id,
+        //'firstName': rest.firstName,
+        //'lastName': rest.lastName,
+        //'imageUrl': rest.imageUrl,
+        //'email' : rest.email
+})) 
     }
 
-module.exports = {userCreationPost}
+module.exports = {userCreationPost, userLogin}

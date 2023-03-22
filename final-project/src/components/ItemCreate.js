@@ -3,9 +3,14 @@ import "./UserForms.css"
 import {createItem} from "../service/itemsService"
 import {useNavigate} from "react-router-dom"
 
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 export const ItemCreate = ({backingFunc}) => {
   const navigate = useNavigate()
+
+
+  const {userId} = useContext(AuthContext)
 
   const onSubmitHandler = async (e) =>{
     e.preventDefault()
@@ -18,7 +23,8 @@ export const ItemCreate = ({backingFunc}) => {
       title,
       description,
       imageUrl,
-      keywords
+      keywords,
+      userId
     }
 
     const response = await createItem('POST', body)

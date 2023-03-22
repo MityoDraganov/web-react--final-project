@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     keywords: {
         type: String
     },
+    author: {
+        required: true,
+        type: mongoose.Types.ObjectId,
+        ref: 'userModel',
+    },
     comments: [{
         
     }]

@@ -1,0 +1,73 @@
+
+
+
+.form-row{
+    
+    border-radius: 25px;
+    filter:blur(0px);
+    background-image: linear-gradient(to right top, #c59cf9, #c496f9, #c38ff9, #c289f9, #c282f9, #c67ff9, #ca7dfa, #ce7afa, #d77cfb, #e07dfc, #e97ffc, #f281fd);
+   
+    opacity: 1;
+
+
+}
+
+.form-input{
+    border-radius: 25px;
+    height: 30px;
+}
+
+.input-wrapper{
+    padding-bottom: 5%;
+}
+
+
+.btn{
+    border-radius: 25px;
+    height: 30px;
+}
+
+.user-form{
+    display: inline-block;
+    width: 30%;
+    left: 25%;
+    align-content: center;
+
+}
+
+.backdrop{
+    filter: blur(30px);
+}
+
+.profilepicture-frame{
+    
+    float: right;
+    padding: 30px;
+    padding-bottom: 100%;
+   
+
+    height: 100px;
+}
+
+.tumbnailpicture-frame{
+    
+   
+    float: right;
+    padding: 30px;
+    padding-bottom: 100%;
+   
+
+    height: 100px;
+
+}
+
+.btn-close{
+    border-radius: 25px;
+    height: 30px;
+    float:inline-end;
+
+    padding: 30px;
+
+    display: block;
+    
+}

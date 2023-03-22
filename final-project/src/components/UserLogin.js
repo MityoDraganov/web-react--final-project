@@ -1,6 +1,35 @@
 import "./UserForms.css"
+import { useState } from "react";
+import { userLogin } from "../service/formFetchService";
+
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+
 
 export const UserLogin = ({backingFunc}) =>{
+    const {setAuth} = useContext(AuthContext)
+  
+    const [values, setValues]= useState({
+      email: '',
+      password: '',
+    })
+
+
+    const onChangeHandler = (e) =>{
+      setValues(state => ({...state, [e.target.name]: e.target.value}))
+    }
+
+    const onSubmitHandler = async (e) =>{
+      e.preventDefault()
+      const data = await userLogin(values)
+      console.log('data')
+      console.log(data)
+
+      localStorage.setItem("token", data.token)
+      setAuth(state => ({...state, token: data.token, _id: data._id}))
+      
+      backingFunc()
+    }
 
     return(
 
@@ -16,7 +45,7 @@ export const UserLogin = ({backingFunc}) =>{
             </header>
 
 
-            <form className="user-form">
+            <form className="user-form" onSubmit={onSubmitHandler}>
 
 
               <div className="form-error">
@@ -38,7 +67,7 @@ export const UserLogin = ({backingFunc}) =>{
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="email" name="email" type="text" />
+                    <input className="form-input" id="email" name="email" type="email" onChange={onChangeHandler} value={values.email}/>
                   </div>
                 </div>
 
@@ -48,7 +77,7 @@ export const UserLogin = ({backingFunc}) =>{
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="email" name="email" type="password" />
+                    <input className="form-input" id="password" name="password" type="password" onChange={onChangeHandler} value={values.password}/>
                   </div>
                 </div>
 

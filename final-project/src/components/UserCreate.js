@@ -4,9 +4,12 @@ import { userCreate } from '../service/formFetchService';
 import {Link, useNavigate} from 'react-router-dom'
 
 
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+
 export const UserCreate = ({backingFunc}) => {
 
-
+  const {setAuth} = useContext(AuthContext) 
   
   const [values, setValues] = useState({
     firstName: '',
@@ -29,20 +32,13 @@ export const UserCreate = ({backingFunc}) => {
     e.preventDefault()
     
 
-    const data = await userCreate('POST', values)
-    /*
-    const response = await fetch('http://localhost:3030/users'
-    ,{
-      method: "POST",
-      body: JSON.stringify(body),
-      headers:{
-          'Content-type': 'application/json'
-      }
-  })
-  */
-  console.log(data)
+    const data = await userCreate(values)
 
-  //console.log(values)
+    console.log(data)
+    localStorage.setItem("token", data.token)
+
+    setAuth(state => ({...state, token: data.token, _id: data._id}))
+  
   }
 
 
