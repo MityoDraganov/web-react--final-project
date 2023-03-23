@@ -2,6 +2,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
+import { ToastContainer } from 'react-toastify';
+
 
 import { UserCreate } from './components/UserCreate';
 import { UserLogin } from './components/UserLogin';
@@ -23,8 +25,10 @@ import { getOneItem } from './service/itemsService';
 
 import { AuthContext } from './contexts/AuthContext';
 
+import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute"
 
 function App() {
+
 
   const navigate = useNavigate();
   const onBackHangler = () =>{
@@ -43,37 +47,36 @@ function App() {
     isAuthenticated: !!auth.token,
   };
 
+  const isAuthorized = () =>{
+
+  }
+
+
   return (
     <>
 
-    <AuthContext.Provider value = {contextValues} >
+    <AuthContext.Provider value={contextValues}>
+      <ToastContainer></ToastContainer>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage backingFunc={onBackHangler} />} />
 
-    <Navigation />
+        {/* Users */}
+        <Route path="/users/register" element={<UserCreate backingFunc={onBackHangler} />} />
+        <Route path="/users/login" element={<UserLogin backingFunc={onBackHangler} />} />
+        <Route path="/users/logout" element={<UserLogout history={navigate} />} />
 
-    <Routes>
-      <Route path='/' element = {<HomePage backingFunc = {onBackHangler} />} />
+        {/* Items */}
+        <Route path="/articles/:id" element={<ItemDetails />} />
 
+        <Route path="/articles/create" element={<PrivateRoute component={ItemCreate}/>} />
+        <Route path="/articles/dashboard" element={<ItemDashboard backingFunc={onBackHangler} />} />
+        <Route path="/articles/edit/:id" element={<ItemEdit backingFunc={onBackHangler} />} />
+        <Route path="/articles/delete/:id" element={<ItemDelete backingFunc={onBackHangler} />} />
 
-      {/* Users */}
-
-      <Route path='/users/register' element = {<UserCreate backingFunc = {onBackHangler} />} />
-      <Route path='/users/login' element = {<UserLogin backingFunc = {onBackHangler} />} />
-      <Route path='/users/logout' element = {<UserLogout history = {navigate}/>} />
-
-
-      {/* Items */}
-
-      <Route path='/articles/create' element = {<ItemCreate backingFunc = {onBackHangler} />} />
-      <Route path='/articles/dashboard' element = {<ItemDashboard backingFunc = {onBackHangler} />} />
-
-      <Route path='/articles/edit/:id' element = {<ItemEdit backingFunc = {onBackHangler} />}/>
-      <Route path='/articles/delete/:id' element = {<ItemDelete backingFunc = {onBackHangler} />}/>
-
-      <Route path='/articles/:id' element = {<ItemDetails />}/>
-    </Routes>
-
-
+      </Routes>
     </AuthContext.Provider>
+
 
 
 
