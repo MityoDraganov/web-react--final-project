@@ -7,6 +7,11 @@ export const getAllItems = async () => {
     const result = await response.json()
     return result
 }
+export const getMyArticles = async (id) =>{
+    const response = await fetch(`${baseURL}/MyArticles/${id}`)
+    const result = await response.json()
+    return result
+}
 
 export const createItem = async (method, body) => {
     //console.log(body)

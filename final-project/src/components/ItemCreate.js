@@ -6,8 +6,10 @@ import {useNavigate} from "react-router-dom"
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
+import { NavContext } from "../contexts/NavContext";
+
 export const ItemCreate = ({backingFunc}) => {
-  const navigate = useNavigate()
+  const {navigate, onBackHangler} = useContext(NavContext)
 
 
   const {userId} = useContext(AuthContext)
@@ -55,7 +57,7 @@ export const ItemCreate = ({backingFunc}) => {
             
                 <div className="form-row">
 
-              <button className="btn-close" onClick={backingFunc}>
+              <button className="btn-close" type="button" onClick={onBackHangler}>
                 X
               </button>
               

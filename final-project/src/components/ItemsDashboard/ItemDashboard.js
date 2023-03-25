@@ -1,4 +1,4 @@
-import {ItemRenderer} from "./Item"
+import {ItemRenderer} from "../Article/Item"
 import {useState, useEffect} from "react"
 import {getAllItems} from "../../service/itemsService"
 export const ItemDashboard = () =>{

@@ -8,11 +8,14 @@
     import {useNavigate} from "react-router-dom"
     import { useParams } from "react-router-dom";
 
-    export const ItemEdit = ({backingFunc}) => {
+    import { NavContext } from "../../contexts/NavContext";
+    import { useContext } from "react";
+
+    export const ItemEdit = () => {
 
         const {id} = useParams()
+        const {navigate, onBackHangler} = useContext(NavContext)
 
-    const navigate = useNavigate()
 
         const [values, setValues] = useState({
             title: '',
@@ -67,7 +70,7 @@
                 
                     <div className="form-row">
 
-                <button className="btn-close" onClick={backingFunc}>
+                <button className="btn-close" type = "button" onClick={onBackHangler}>
                     X
                 </button>
                 
@@ -127,7 +130,7 @@
                     <button id="action-save" className="btn" type="submit">
                     Save
                     </button>
-                    <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
+                    <button id="action-cancel" className="btn" type="button" onClick={onBackHangler}>
                     Cancel
                     </button>
                 </div>

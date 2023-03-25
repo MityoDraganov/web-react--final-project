@@ -37,6 +37,10 @@ Router.get('/items/:id', (req, res) =>{
     itemControler.getOneItem(req, res)
 })
 
+Router.get('/items/MyArticles/:id', (req, res) =>{
+    itemControler.getMyArticles(req,res)
+})
+
 
 
 //get all items

@@ -12,6 +12,7 @@
 }
 
 .details-item-btn{
+    text-decoration: none;
     border-radius: 25px;
     height: 30px;
    width: 80%;
@@ -24,3 +25,14 @@
     display:inline-block;
         vertical-align:middle;
 }
+
+.details-item-a{
+    text-decoration: none !important;
+    color: black;
+    
+}
+
+.details-item-btn a.details-item-a {
+    text-decoration: none;
+  }
+  

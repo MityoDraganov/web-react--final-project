@@ -5,10 +5,13 @@ import { userLogin } from "../service/formFetchService";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
+import { NavContext } from "../contexts/NavContext";
 
-export const UserLogin = ({backingFunc}) =>{
+
+export const UserLogin = () =>{
     const {setAuth} = useContext(AuthContext)
-  
+    const {navigate, onBackHangler} = useContext(NavContext)
+
     const [values, setValues]= useState({
       email: '',
       password: '',
@@ -28,7 +31,7 @@ export const UserLogin = ({backingFunc}) =>{
       localStorage.setItem("token", data.token)
       setAuth(state => ({...state, token: data.token, _id: data._id}))
       
-      backingFunc()
+      onBackHangler()
     }
 
     return(
@@ -55,7 +58,7 @@ export const UserLogin = ({backingFunc}) =>{
             
                 <div className="form-row">
 
-              <button className="btn-close" onClick={backingFunc} type="button">
+              <button className="btn-close" onClick={onBackHangler} type="button">
                 X
               </button>
 
@@ -86,7 +89,7 @@ export const UserLogin = ({backingFunc}) =>{
                 <button id="action-save" className="btn" type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
+                <button id="action-cancel" className="btn" type="button" onClick={onBackHangler}>
                   Cancel
                 </button>
               </div>

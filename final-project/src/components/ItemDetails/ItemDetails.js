@@ -9,6 +9,7 @@ import styles from "./ItemDetails.module.css"
 
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { NavContext } from "../../contexts/NavContext";
 
 
 export const ItemDetails =  () => {
@@ -21,6 +22,7 @@ export const ItemDetails =  () => {
 
     const {userId} = useContext(AuthContext)
     
+
     useEffect(()=>{
         const fetchData = async () =>{
             const article = await getOneItem(id)
@@ -47,8 +49,8 @@ export const ItemDetails =  () => {
             <textarea defaultValue={data.description} className={styles['details-item-txtarea']}></textarea>
             
             <div>
-                <button className={styles['details-item-btn']}><Link to={`/articles/edit/${id}`}>Edit</Link></button>
-                <button className={styles['details-item-btn']}><Link to={`/articles/delete/${id}`}>Delete</Link></button>
+                <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/edit/${id}`}>Edit</Link></button>
+                <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/delete/${id}`}>Delete</Link></button>
             </div>
     
             <footer>

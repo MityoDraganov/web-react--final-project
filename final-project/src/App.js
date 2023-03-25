@@ -1,9 +1,9 @@
 
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ToastContainer } from 'react-toastify';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 import { UserCreate } from './components/UserCreate';
 import { UserLogin } from './components/UserLogin';
@@ -18,14 +18,13 @@ import { ItemDashboard } from './components/ItemsDashboard/ItemDashboard';
 import { ItemDetails} from './components/ItemDetails/ItemDetails'
 import { ItemEdit } from './components/ItemEdit/ItemEdit';
 import { ItemDelete } from './components/ItemDelete/ItemDelete';
+import { MyArticles } from './components/MyArticles/MyArticles';
 
-
-import {DetailedItemContext} from "./contexts/DetailedItemContext"
-import { getOneItem } from './service/itemsService';
 
 import { AuthContext } from './contexts/AuthContext';
-
+import { NavContext } from './contexts/NavContext';
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute"
+
 
 function App() {
 
@@ -39,23 +38,25 @@ function App() {
     _id: null,
     token: null,
   })
+  
 
-  const contextValues = {
+  const authContextValues = {
     setAuth,
     userId: auth._id,
     token: auth.token,
     isAuthenticated: !!auth.token,
   };
-
-  const isAuthorized = () =>{
-
+  const navContextValue = {
+    navigate,
+    onBackHangler
   }
+
 
 
   return (
     <>
-
-    <AuthContext.Provider value={contextValues}>
+    <NavContext.Provider value={navContextValue} >
+    <AuthContext.Provider value={authContextValues}>
       <ToastContainer></ToastContainer>
       <Navigation />
       <Routes>
@@ -70,13 +71,13 @@ function App() {
         <Route path="/articles/:id" element={<ItemDetails />} />
 
         <Route path="/articles/create" element={<PrivateRoute component={ItemCreate}/>} />
-        <Route path="/articles/dashboard" element={<ItemDashboard backingFunc={onBackHangler} />} />
-        <Route path="/articles/edit/:id" element={<ItemEdit backingFunc={onBackHangler} />} />
-        <Route path="/articles/delete/:id" element={<ItemDelete backingFunc={onBackHangler} />} />
-
-      </Routes>
+        <Route path="/articles/dashboard" element={<PrivateRoute component={ItemDashboard} />} />
+        <Route path="/articles/edit/:id" element={<PrivateRoute component={ItemEdit} />} />
+        <Route path="/articles/delete/:id" element={<PrivateRoute component={ItemDelete} />} />
+        <Route path="/articles/MyArticles/:id" element={<PrivateRoute component={MyArticles} />} />
+      </Routes> 
     </AuthContext.Provider>
-
+    </NavContext.Provider>
 
 
 

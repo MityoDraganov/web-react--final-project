@@ -48,6 +48,13 @@ const getAllItems = async (req, res) =>{
     res.send(JSON.stringify(items))
 }
 
+const getMyArticles = async (req, res) =>{
+    const id = req.params.id
+    const myArticles = await articlesModel.find({author: id}).lean()
+
+    res.send(JSON.stringify(myArticles))
+}
+
 //get one item by id
 const getOneItem = async (req,res) =>{
     const id = req.params.id
@@ -58,4 +65,4 @@ const getOneItem = async (req,res) =>{
     res.send(JSON.stringify(item))
 }
 
-module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete}
+module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticles}
