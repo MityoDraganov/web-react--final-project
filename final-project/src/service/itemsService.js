@@ -50,6 +50,19 @@ export const deleteItem = async (body,id) =>{
     return data
 }
 
+export const postComment = async (body, id) =>{
+    const response = await fetch(`${baseURL}/comment/${id}`,{
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers:{
+            "Content-type": "application/json"
+        }
+    })
+    const data = await response.json()
+    return data
+}
+
+
 
 export const getOneItem = async (id) =>{
     const response = await fetch(`${baseURL}/${id}`)

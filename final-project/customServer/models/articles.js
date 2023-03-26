@@ -5,13 +5,13 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     description: {
-        type: String
+        type: String,
     },
     imageUrl: {
-        type: String
-    },
+        type: String,
+    },  
     keywords: {
-        type: String
+        type: String,
     },
     author: {
         required: true,
@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
         ref: 'userModel',
     },
     comments: [{
-        
+        userId: {type: mongoose.Types.ObjectId, ref: 'userModel', required: true},
+        comment: {type: String, required:true}
     }]
 
 })

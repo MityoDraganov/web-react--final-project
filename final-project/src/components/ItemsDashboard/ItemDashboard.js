@@ -1,6 +1,7 @@
 import {ItemRenderer} from "../Article/Item"
 import {useState, useEffect} from "react"
 import {getAllItems} from "../../service/itemsService"
+import { NoArticlesYet } from "../NoArticlesYet/NoArticlesYet";
 export const ItemDashboard = () =>{
 
 
@@ -17,7 +18,12 @@ export const ItemDashboard = () =>{
 
     
 
-
+    if(articles.length == 0){
+        return(
+            <NoArticlesYet />
+        )
+    }
+    
     return(
         <>
         {articles.map(x =>{

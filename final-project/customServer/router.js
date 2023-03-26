@@ -4,7 +4,7 @@ const Router = require('express').Router()
 const userControler = require("./controlers/userControler")
 const itemControler = require("./controlers/itemControler")
 
-
+//AUTH
 Router.post('/users/register', (req,res)=>{
     userControler.userCreationPost(req,res)
 })
@@ -20,14 +20,19 @@ Router.post('/items/create', (req,res)=>{
     itemControler.itemPost(req,res)
 
 })
+//item edit
 Router.put('/items/edit/:id', (req,res)=>{
 
     itemControler.itemEdit(req,res)
 
 })
-
+//item delete
 Router.delete('/items/delete/:id', (req, res) => {
     itemControler.itemDelete(req,res)
+})
+
+Router.post('/items/comment/:id', (req, res) =>{
+    itemControler.postComment(req, res)
 })
 
 

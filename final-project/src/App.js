@@ -66,13 +66,17 @@ function App() {
         {/* Users */}
         <Route path="/users/register" element={<UserCreate backingFunc={onBackHangler} />} />
         <Route path="/users/login" element={<UserLogin backingFunc={onBackHangler} />} />
-        <Route path="/users/logout" element={<UserLogout history={navigate} />} />
+
+
+        <Route path="/users/logout" element={<PrivateRoute component={UserLogout} />} />
+
 
         {/* Items */}
         <Route path="/articles/:id" element={<ItemDetails />} />
+        <Route path="/articles/dashboard" element={<ItemDashboard />} />
+
 
         <Route path="/articles/create" element={<PrivateRoute component={ItemCreate}/>} />
-        <Route path="/articles/dashboard" element={<PrivateRoute component={ItemDashboard} />} />
         <Route path="/articles/edit/:id" element={<PrivateRoute component={ItemEdit} />} />
         <Route path="/articles/delete/:id" element={<PrivateRoute component={ItemDelete} />} />
         <Route path="/articles/MyArticles/:id" element={<PrivateRoute component={MyArticles} />} />

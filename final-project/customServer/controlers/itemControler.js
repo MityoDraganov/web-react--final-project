@@ -41,7 +41,20 @@ const itemDelete = async(req, res) => {
 }
 
 const postComment = async(req, res) =>{
+    const itemId = req.params.id
+    
+    const {message, userId} = req.body
 
+    const article = await articlesModel.findById(itemId)
+
+    article.comments.push({
+        userId: userId,
+        comment: message
+    })
+    
+    await article.save()
+
+    res.send(JSON.stringify(article))
 }
 
 
@@ -65,7 +78,21 @@ const getOneItem = async (req,res) =>{
     const id = req.params.id
     
 
-    const item = await articlesModel.findById(id).populate("author")
+    //const item = await articlesModel.findById(id).populate("author").populate("comments", "userId message")
+
+
+    const item = await articlesModel
+    .findById(id)
+    .populate({
+      path: 'author',
+      select: 'firstName lastName email imageUrl'
+    })
+    .populate({
+      path: 'comments.userId',
+      select: 'firstName lastName email imageUrl comment'
+    })
+    .lean();
+
 
     res.send(JSON.stringify(item))
 }

@@ -1,22 +1,34 @@
 import { useState } from "react"
+import {useParams} from "react-router-dom"
 
 import { useContext } from "react";
 import { NavContext } from "../../contexts/NavContext";
-
+import { postComment } from "../../service/itemsService";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const WriteComment = () => {
+    const {id} = useParams()
+
     const {navigate, onBackHangler} = useContext(NavContext)
+    const {userId} = useContext(AuthContext)
 
     const [values, setValues] = useState({
-
+      message: ''
     })
 
-    const onChangeHandler = () => {
-
+    const onChangeHandler = (e) => {
+      setValues(state => ({...state, [e.target.name]: e.target.value}))
     }
 
-    const onSubmitHandler = () =>{
+    const onSubmitHandler = async (e) => {
+      e.preventDefault()
 
+      values.userId = userId
+
+      const response = await postComment(values, id)
+      console.log(response)
+
+      onBackHangler()
     }
 
     return(
@@ -46,18 +58,11 @@ export const WriteComment = () => {
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
+                    <input className="form-input" id="message" name="message" type="text" onChange={onChangeHandler} value={values.message}/>
                   </div>
                 </div>
 
 
-                
-
-                
-
-
-              
-                
 
 
                 <div id="form-actions">

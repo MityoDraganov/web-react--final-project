@@ -10,14 +10,15 @@ import styles from "./ItemDetails.module.css"
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NavContext } from "../../contexts/NavContext";
-
+import { Comment } from "../Comment/Comment"
 
 export const ItemDetails =  () => {
 
     const {id} = useParams()
     console.log(id)
     const [data, setData] = useState({
-        author: {}
+        author: {},
+        comments: [],
     })
 
     const {userId} = useContext(AuthContext)
@@ -55,9 +56,9 @@ export const ItemDetails =  () => {
     
             <footer>
                 <div className="details-comment-section">
-                    <img></img>
-                    <h2></h2>
-                    <p></p>
+                    {data.comments.map(x =>{
+                        return(<Comment {...x} />)
+                    })}
                 </div>
             </footer>
             </div>
@@ -79,9 +80,9 @@ export const ItemDetails =  () => {
     
             <footer>
                 <div className="details-comment-section">
-                    <img></img>
-                    <h2></h2>
-                    <p></p>
+                    {data.comments.map(x =>{
+                        return(<Comment {...x} />)
+                    })}
                 </div>
             </footer>
             </div>
@@ -103,9 +104,9 @@ export const ItemDetails =  () => {
     
             <footer>
                 <div className="details-comment-section">
-                    <img></img>
-                    <h2></h2>
-                    <p></p>
+                    {data.comments.map(x =>{
+                        return(<Comment key={x._id} {...x} />)
+                    })}
                 </div>
             </footer>
             </div>
