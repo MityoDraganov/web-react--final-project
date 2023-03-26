@@ -40,6 +40,11 @@ const itemDelete = async(req, res) => {
     res.send(JSON.stringify(article))
 }
 
+const postComment = async(req, res) =>{
+
+}
+
+
 
 //get all items
 const getAllItems = async (req, res) =>{
@@ -65,4 +70,4 @@ const getOneItem = async (req,res) =>{
     res.send(JSON.stringify(item))
 }
 
-module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticles}
+module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticles, postComment}

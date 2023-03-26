@@ -74,7 +74,7 @@ export const ItemDetails =  () => {
             <p><span>Title:</span> {data.title}</p>
             <label>Description:</label>
             <textarea defaultValue={data.description} className={styles['details-item-txtarea']}></textarea>
-            
+            <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/writeComment/${id}`}>Write a comment</Link></button>
          
     
             <footer>

@@ -11,6 +11,8 @@
     import { NavContext } from "../../contexts/NavContext";
     import { useContext } from "react";
 
+    import { itemValidationService } from "../../service/itemValidationService";
+
     export const ItemEdit = () => {
 
         const {id} = useParams()
@@ -41,11 +43,18 @@
     const onSubmitHandler = async (e) =>{
         e.preventDefault()
         
+        const isValid = itemValidationService(values)
+        
+        if(isValid){
+            
+            
+            const response = await editItem(values, id)
+            console.log("response")
+            console.log(response)
+            navigate(`/articles/${id}`)
 
-        const response = await editItem(values, id)
-        console.log("response")
-        console.log(response)
-        navigate(`/articles/${id}`)
+
+        }
     }
 
     return (

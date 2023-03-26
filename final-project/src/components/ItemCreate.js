@@ -1,5 +1,8 @@
 import "./UserForms.css"
 
+import {useState} from "react"
+
+
 import {createItem} from "../service/itemsService"
 import {useNavigate} from "react-router-dom"
 
@@ -8,31 +11,44 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import { NavContext } from "../contexts/NavContext";
 
-export const ItemCreate = ({backingFunc}) => {
+import { itemValidationService } from "../service/itemValidationService";
+import { toast } from "react-toastify";
+
+
+export const ItemCreate = () => {
   const {navigate, onBackHangler} = useContext(NavContext)
 
 
   const {userId} = useContext(AuthContext)
 
+  const [values, setValues] = useState({
+    title: "",
+    description: "",
+    imageUrl: "",
+    keywords: ""
+  })
+
+  const onChangeHandler = (e) =>{
+    setValues(state => ({...state, [e.target.name]: e.target.value}))
+  }
+
   const onSubmitHandler = async (e) =>{
     e.preventDefault()
-    //console.log(e.target)
 
-    const formData = new FormData(e.target)
-    const {title, description, imageUrl, keywords} = Object.fromEntries(formData.entries())
-    
-    const body = {
-      title,
-      description,
-      imageUrl,
-      keywords,
-      userId
-    }
+    values.userId = userId
 
-    const response = await createItem('POST', body)
-    console.log("response")
-    console.log(response)
-    navigate("/articles/dashboard")
+    const isValidData = itemValidationService(values)
+
+    if(isValidData){
+
+      
+      const response = await createItem('POST', values)
+      console.log("response")
+      console.log(response)
+      navigate("/articles/dashboard")
+      
+    } 
+
   }
 
   return (
@@ -70,7 +86,7 @@ export const ItemCreate = ({backingFunc}) => {
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="title" name="title" type="text" />
+                    <input className="form-input" id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
                   </div>
                 </div>
 
@@ -86,7 +102,7 @@ export const ItemCreate = ({backingFunc}) => {
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="description" name="description" type="text" />
+                    <input className="form-input" id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} />
                   </div>
                 </div>
 
@@ -96,7 +112,7 @@ export const ItemCreate = ({backingFunc}) => {
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="imageUrl" name="imageUrl" type="text" />
+                    <input className="form-input" id="imageUrl" name="imageUrl" type="text" onChange={onChangeHandler} value={values.imageUrl} />
                   </div>
                 </div>
 
@@ -106,7 +122,7 @@ export const ItemCreate = ({backingFunc}) => {
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="keywords" name="keywords" type="text" />
+                    <input className="form-input" id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} />
                   </div>
                 </div>
 
@@ -117,7 +133,7 @@ export const ItemCreate = ({backingFunc}) => {
                 <button id="action-save" className="btn" type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
+                <button id="action-cancel" className="btn" type="button" onClick={onBackHangler}>
                   Cancel
                 </button>
               </div>
