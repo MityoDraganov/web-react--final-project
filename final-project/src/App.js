@@ -61,11 +61,11 @@ function App() {
       <ToastContainer></ToastContainer>
       <Navigation />
       <Routes>
-        <Route path="/" element={<HomePage backingFunc={onBackHangler} />} />
+        <Route path="/" element={<HomePage />} />
 
         {/* Users */}
-        <Route path="/users/register" element={<UserCreate backingFunc={onBackHangler} />} />
-        <Route path="/users/login" element={<UserLogin backingFunc={onBackHangler} />} />
+        <Route path="/users/register" element={<UserCreate />} />
+        <Route path="/users/login" element={<UserLogin />} />
 
 
         <Route path="/users/logout" element={<PrivateRoute component={UserLogout} />} />

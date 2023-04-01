@@ -3,29 +3,37 @@ import { useState, useEffect } from "react"
 import { getMyArticles } from "../../service/itemsService"
 import { ItemRenderer } from "../Article/Item"
 import { NoArticlesYet } from "../NoArticlesYet/NoArticlesYet"
-
+import {Comment} from "../Comment/Comment"
 export const MyArticles =  () => {
     const {id} = useParams()
 
-    const [myArticlesValues, setmyArticlesValues] = useState()
+    const [myArticlesAndComments, setmyArticlesAndComments] = useState({
+        myArticles: [],
+        myComments: [],
+    })
 
     useEffect(() => {
         getMyArticles(id)
-        .then(data => setmyArticlesValues(data))
+        .then(data => setmyArticlesAndComments(data))
     }, [])
 
-    
+    console.log(myArticlesAndComments)
 
-    if(myArticlesValues !== undefined){
-        if(myArticlesValues.length == 0){
+    if(myArticlesAndComments.myArticles !== undefined){
+        if(myArticlesAndComments.myArticles.length === 0){
             return(
                 <NoArticlesYet />
             )
         } else{
             return(
                  <>
-                    {myArticlesValues.map(x =>{
-                        return(<ItemRenderer key={x._id} {...x} />)
+                    <h3>My Articles</h3>
+                    {myArticlesAndComments.myArticles.map(x =>{
+                        return(<ItemRenderer  {...x} />)
+                    })}
+                    <h3>My Comments</h3>
+                    {myArticlesAndComments.myComments.map(x => {
+                        return(<Comment key={x._id} {...x} />)
                     })}
                  </>
             ) 

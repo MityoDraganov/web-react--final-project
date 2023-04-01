@@ -5,6 +5,9 @@
 
     const userModel = require("../models/user")
 
+
+
+
     async function userCreationPost(req,res){
     const data = req.body
     
@@ -27,23 +30,42 @@
     res.end()
 }
 
-    async function userLogin(req,res){
-        const {email, password} = {...req.body}
-        
-        const user = await userModel.find({email: email}).lean()
-        const token = await jwtPromises.sign({email: email}, secret)
 
-        console.log('user')
 
-        console.log(user)
-        res.send(JSON.stringify({
-        "token": token,
-        "_id": user[0]._id,
-        //'firstName': rest.firstName,
-        //'lastName': rest.lastName,
-        //'imageUrl': rest.imageUrl,
-        //'email' : rest.email
-})) 
+
+async function userLogin(req, res) {
+    try {
+      const { email, password } = { ...req.body };
+  
+      if (!email || !password) {
+        throw new Error("Email and password are required");
+      }
+  
+      const user = await userModel.findOne({ email: email });
+      if (!user) {
+        throw new Error("Wrong email or password");
+      }
+  
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        throw new Error("Wrong email or password");
+      }
+  
+      const token = await jwtPromises.sign({ email: email }, secret);
+  
+      res.send(
+        JSON.stringify({
+          token: token,
+          _id: user._id,
+        })
+      );
+    } catch (e) {
+      res.status(401).send({ error: "Unauthorized: " + e.message });
     }
+  }
+  
+
+
+
 
 module.exports = {userCreationPost, userLogin}

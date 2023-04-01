@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NavContext } from "../../contexts/NavContext";
 import { Comment } from "../Comment/Comment"
+import { Comments } from "../Comments/Comments"
 
 export const ItemDetails =  () => {
 
@@ -20,6 +21,7 @@ export const ItemDetails =  () => {
         author: {},
         comments: [],
     })
+    console.log(data.comments)
 
     const {userId} = useContext(AuthContext)
     
@@ -38,16 +40,20 @@ export const ItemDetails =  () => {
 
     console.log(data)
 
-    if(userId == data.author._id){
+    if(userId ===    data.author._id){
 
 
         return(
             <div  className={styles['details-item-div']}>
     
             <img className={styles['details-item-img']} src={data.imageUrl}></img>
-            <p><span>Title:</span> {data.title}</p>
-            <label>Description:</label>
-            <textarea defaultValue={data.description} className={styles['details-item-txtarea']}></textarea>
+            <h2><span>Title:</span> {data.title}</h2>
+
+            <label className="details-item-label">Description:</label>
+            
+            <textarea value={data.description} className={styles['details-item-txtarea']} readOnly />
+            
+
             
             <div>
                 <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/edit/${id}`}>Edit</Link></button>
@@ -55,10 +61,22 @@ export const ItemDetails =  () => {
             </div>
     
             <footer>
+                <h2>Comments:</h2>
                 <div className="details-comment-section">
-                    {data.comments.map(x =>{
-                        return(<Comment {...x} />)
-                    })}
+                    {
+                        data.comments.length === 0 ?
+                        <div>
+                            
+                            <h1>😔</h1>
+                            <h3>No Comments yet...</h3>
+
+                        </div>
+                        :
+                        data.comments.map(comment => (
+                            <Comment key={comment._id} comment={comment} />
+                        ))
+                    
+                    }
                 </div>
             </footer>
             </div>
@@ -72,17 +90,36 @@ export const ItemDetails =  () => {
             <div  className={styles['details-item-div']}>
     
             <img className={styles['details-item-img']} src={data.imageUrl}></img>
-            <p><span>Title:</span> {data.title}</p>
-            <label>Description:</label>
-            <textarea defaultValue={data.description} className={styles['details-item-txtarea']}></textarea>
+            <h2><span>Title:</span> {data.title}</h2>
+            
+
+            <label className="details-item-label">Description:</label>
+
+
+            <textarea value={data.description} className={styles['details-item-txtarea']} readOnly />
+
+
+
             <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/writeComment/${id}`}>Write a comment</Link></button>
          
     
             <footer>
+                <h2>Comments:</h2>
                 <div className="details-comment-section">
-                    {data.comments.map(x =>{
-                        return(<Comment {...x} />)
-                    })}
+                    {
+                        data.comments.length === 0 ?
+                        <div>
+                            
+                            <h1>😔</h1>
+                            <h3>No Comments yet...</h3>
+
+                        </div>
+                        :
+                        data.comments.map(comment => (
+                            <Comment key={comment.id} comment={comment} />
+                        ))
+                    
+                    }
                 </div>
             </footer>
             </div>
@@ -96,17 +133,35 @@ export const ItemDetails =  () => {
             <div  className={styles['details-item-div']}>
     
             <img className={styles['details-item-img']} src={data.imageUrl}></img>
-            <p><span>Title:</span> {data.title}</p>
-            <label>Description:</label>
-            <textarea defaultValue={data.description} className={styles['details-item-txtarea']}></textarea>
+
+
+            <h2><span>Title:</span> {data.title}</h2>
+
+
+            <label className="details-item-label">Description:</label>
+
+
+            <textarea value={data.description} className={styles['details-item-txtarea']} readOnly />
             
           
     
             <footer>
+                <h2>Comments:</h2>
                 <div className="details-comment-section">
-                    {data.comments.map(x =>{
-                        return(<Comment key={x._id} {...x} />)
-                    })}
+                    {
+                        data.comments.length === 0 ?
+                        <div>
+                            
+                            <h1>😔</h1>
+                            <h3>No Comments yet...</h3>
+
+                        </div>
+                        :
+                        data.comments.map(comment => (
+                            <Comment key={comment.id} comment={comment} />
+                        ))
+                    
+                    }
                 </div>
             </footer>
             </div>

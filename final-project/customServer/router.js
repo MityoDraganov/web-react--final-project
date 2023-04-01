@@ -43,7 +43,7 @@ Router.get('/items/:id', (req, res) =>{
 })
 
 Router.get('/items/MyArticles/:id', (req, res) =>{
-    itemControler.getMyArticles(req,res)
+    itemControler.getMyArticlesAndComments(req,res)
 })
 
 

@@ -7,6 +7,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import { NavContext } from "../contexts/NavContext";
 
+import {toast} from "react-toastify"
 
 export const UserLogin = () =>{
     const {setAuth} = useContext(AuthContext)
@@ -25,6 +26,10 @@ export const UserLogin = () =>{
     const onSubmitHandler = async (e) =>{
       e.preventDefault()
       const data = await userLogin(values)
+      if(data.error){
+        toast(data.error)
+        return
+      }
       console.log('data')
       console.log(data)
 

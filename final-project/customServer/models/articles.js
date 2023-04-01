@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         ref: 'userModel',
     },
     comments: [{
-        userId: {type: mongoose.Types.ObjectId, ref: 'userModel', required: true},
+        authorId: {type: mongoose.Types.ObjectId, ref: 'userModel', required: true},
         comment: {type: String, required:true}
     }]
 

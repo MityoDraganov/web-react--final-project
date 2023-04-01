@@ -48,7 +48,7 @@ const postComment = async(req, res) =>{
     const article = await articlesModel.findById(itemId)
 
     article.comments.push({
-        userId: userId,
+        authorId: userId,
         comment: message
     })
     
@@ -66,11 +66,38 @@ const getAllItems = async (req, res) =>{
     res.send(JSON.stringify(items))
 }
 
-const getMyArticles = async (req, res) =>{
+const getMyArticlesAndComments = async (req, res) =>{
+    try {
     const id = req.params.id
     const myArticles = await articlesModel.find({author: id}).lean()
+    
+        const articles = await articlesModel.find()
+          .populate({
+            path: 'comments.authorId',
+            match: { _id: id }
+          })
+          .exec();
+    
+        // Filter the comments based on the author's _id
+        const myComments = articles.reduce((acc, article) => {
+          acc.push(...article.comments.filter(comment => comment.userId));
+          return acc;
+        }, []);
 
-    res.send(JSON.stringify(myArticles))
+        res.send(JSON.stringify({
+            myArticles,
+            myComments
+        }))
+
+
+
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    
+
+
 }
 
 //get one item by id
@@ -88,7 +115,7 @@ const getOneItem = async (req,res) =>{
       select: 'firstName lastName email imageUrl'
     })
     .populate({
-      path: 'comments.userId',
+      path: 'comments.authorId',
       select: 'firstName lastName email imageUrl comment'
     })
     .lean();
@@ -97,4 +124,8 @@ const getOneItem = async (req,res) =>{
     res.send(JSON.stringify(item))
 }
 
-module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticles, postComment}
+
+
+
+
+module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticlesAndComments, postComment, }

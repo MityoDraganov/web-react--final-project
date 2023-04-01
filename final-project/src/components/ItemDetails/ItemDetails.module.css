@@ -20,11 +20,28 @@
 
 .details-item-img{
     width: 80%;
-}
+}   
 .details-item-txtarea{
-    display:inline-block;
-        vertical-align:middle;
+
+        
+        height: 50px;
+
+        resize: none;
+
+
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+
+        
+
 }
+
+.details-item-label {
+    display: block;
+    margin-bottom: 5px;
+  }
 
 .details-item-a{
     text-decoration: none !important;
