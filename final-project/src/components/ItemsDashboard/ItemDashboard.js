@@ -10,7 +10,7 @@ export const ItemDashboard = () =>{
     useEffect(() => {
         getAllItems()
         .then(res => {
-            console.log("render")
+
             setArticles(Object.values(res))
         })
 

@@ -9,9 +9,9 @@ import styles from "./ItemDetails.module.css"
 
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { NavContext } from "../../contexts/NavContext";
+
 import { Comment } from "../Comment/Comment"
-import { Comments } from "../Comments/Comments"
+
 
 export const ItemDetails =  () => {
 
@@ -32,7 +32,7 @@ export const ItemDetails =  () => {
             setData(article)
         }
         fetchData()
-    }, [])
+    }, [id])    
     
     //const authorId = data.author._id
     //const post = await getOneItem(id)
@@ -46,7 +46,7 @@ export const ItemDetails =  () => {
         return(
             <div  className={styles['details-item-div']}>
     
-            <img className={styles['details-item-img']} src={data.imageUrl}></img>
+            <img className={styles['details-item-img']} src={data.imageUrl} alt={data.title}></img>
             <h2><span>Title:</span> {data.title}</h2>
 
             <label className="details-item-label">Description:</label>
@@ -73,6 +73,7 @@ export const ItemDetails =  () => {
                         </div>
                         :
                         data.comments.map(comment => (
+                            
                             <Comment key={comment._id} comment={comment} />
                         ))
                     
@@ -89,7 +90,7 @@ export const ItemDetails =  () => {
         return(
             <div  className={styles['details-item-div']}>
     
-            <img className={styles['details-item-img']} src={data.imageUrl}></img>
+            <img className={styles['details-item-img']} src={data.imageUrl} alt={data.title}></img>
             <h2><span>Title:</span> {data.title}</h2>
             
 
@@ -132,7 +133,7 @@ export const ItemDetails =  () => {
         return(
             <div  className={styles['details-item-div']}>
     
-            <img className={styles['details-item-img']} src={data.imageUrl}></img>
+            <img className={styles['details-item-img']} src={data.imageUrl} alt={data.title}></img>
 
 
             <h2><span>Title:</span> {data.title}</h2>

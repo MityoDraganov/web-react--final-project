@@ -80,7 +80,7 @@ const getMyArticlesAndComments = async (req, res) =>{
     
         // Filter the comments based on the author's _id
         const myComments = articles.reduce((acc, article) => {
-          acc.push(...article.comments.filter(comment => comment.userId));
+          acc.push(...article.comments.filter(comment => comment.authorId));
           return acc;
         }, []);
 

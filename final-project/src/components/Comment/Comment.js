@@ -5,11 +5,15 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 
 export const Comment = ({comment}) =>{
-    console.log('author id')
-    //console.log(authorId)
-    const {userId} = useContext(AuthContext)
-    if(comment !== undefined){
 
+
+    const {userId} = useContext(AuthContext)
+
+
+
+
+    if(comment !== undefined){
+    
     if(comment.authorId._id === userId){
     return(
         <div className={styles["comment-div"]}>
@@ -19,7 +23,7 @@ export const Comment = ({comment}) =>{
                 <p className={styles["comment-message"]}>{comment.comment}</p>
             </div>
             <button>Edit</button>
-            <button>Delte</button>
+            <button>Delete</button>
         </div>
     )
     } else{
