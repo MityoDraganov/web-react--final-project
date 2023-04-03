@@ -3,7 +3,7 @@ import styles from './Navigation.module.css'
 import {useNavigate} from 'react-router-dom'
 
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 
 export const Navigation = () => {

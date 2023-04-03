@@ -1,17 +1,17 @@
-import "./UserForms.css"
+import styles from "./ItemCreate.module.css"
 
 import {useState} from "react"
 
 
-import {createItem} from "../service/itemsService"
+import {createItem} from "../../service/itemsService"
 import {useNavigate} from "react-router-dom"
 
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-import { NavContext } from "../contexts/NavContext";
+import { NavContext } from "../../contexts/NavContext";
 
-import { itemValidationService } from "../service/itemValidationService";
+import { itemValidationService } from "../../service/itemValidationService";
 
 
 
@@ -64,29 +64,27 @@ export const ItemCreate = () => {
             </header>
 
 
-            <form className="user-form" onSubmit = {onSubmitHandler}>
+            <form className={styles["user-form"]} onSubmit = {onSubmitHandler}>
 
-              <div className="form-error">
-                <p>Last name should be at least 3 characters long!</p>
-              </div>
 
             
-                <div className="form-row">
+            <div className={styles["form-row"]}>
 
-              <button className="btn-close" type="button" onClick={onBackHangler}>
+              <button className={styles["btn-close"]} type="button" onClick={onBackHangler}>
                 X
               </button>
               
-              <div className="profilepicture-wraper">
+              <div className={styles["tumbnailpicture-frame"]}>
                 <img className="tumbnailpicture-frame" src='https://static.thenounproject.com/png/4460304-200.png' alt='tumbnail icon'/>
               </div>
-                <div className="form-group">
+
+                <div className={styles["form-group"]}>
                   <label htmlFor="firstName">Title</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
+                    <input className={styles["form-input"]} id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
                   </div>
                 </div>
 
@@ -96,33 +94,33 @@ export const ItemCreate = () => {
                 
 
 
-              <div className="form-group">
+              <div className={styles["form-group"]}>
                   <label htmlFor="email">Description</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} />
+                    <input className={styles["form-input"]} id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} />
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div className={styles["form-group"]}>
                   <label htmlFor="firstName">ImageUrl</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="imageUrl" name="imageUrl" type="text" onChange={onChangeHandler} value={values.imageUrl} />
+                    <input className={styles["form-input"]} id="imageUrl" name="imageUrl" type="text" onChange={onChangeHandler} value={values.imageUrl} />
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div className={styles["form-group"]}>
                   <label htmlFor="Passowrd">keywords to describe video</label>
                   <div className="input-wrapper">
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} />
+                    <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} />
                   </div>
                 </div>
 
@@ -130,10 +128,10 @@ export const ItemCreate = () => {
 
 
                 <div id="form-actions">
-                <button id="action-save" className="btn" type="submit">
+                <button id="action-save" className={styles["btn"]} type="submit">
                   Save
                 </button>
-                <button id="action-cancel" className="btn" type="button" onClick={onBackHangler}>
+                <button id="action-cancel" className={styles["btn"]} type="button" onClick={onBackHangler}>
                   Cancel
                 </button>
               </div>

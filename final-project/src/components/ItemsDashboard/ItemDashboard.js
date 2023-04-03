@@ -2,6 +2,9 @@ import {ItemRenderer} from "../Article/Item"
 import {useState, useEffect} from "react"
 import {getAllItems} from "../../service/itemsService"
 import { NoArticlesYet } from "../NoArticlesYet/NoArticlesYet";
+
+import styles from "./ItemDashboard.module.css"
+
 export const ItemDashboard = () =>{
 
 
@@ -18,17 +21,22 @@ export const ItemDashboard = () =>{
 
     
 
-    if(articles.length == 0){
+    if(articles.length === 0){
         return(
             <NoArticlesYet />
         )
     }
     
-    return(
-        <>
-        {articles.map(x =>{
-            return(<ItemRenderer key={x._id} {...x} />)
-        })}
-        </>
-    )
+    return (
+        <div className={styles.container}>
+          {articles.map((x) => {
+            return (
+              <div key={x._id} className={styles.card}>
+                <ItemRenderer {...x} />
+              </div>
+            );
+          })}
+        </div>
+      );
+      
 }

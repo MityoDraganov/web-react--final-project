@@ -5,14 +5,14 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { UserCreate } from './components/UserCreate';
-import { UserLogin } from './components/UserLogin';
+import { UserCreate } from './components/UserCreate/UserCreate';
+import { UserLogin } from './components/UserLogin/UserLogin';
 import { UserLogout } from './components/UserLogout/UserLogout';
 
 
-import { ItemCreate } from './components/ItemCreate';
+import { ItemCreate } from './components/ItemCreate/ItemCreate';
 import {Routes, Route, useNavigate} from 'react-router-dom'
-import { Navigation } from './components/Navigation';
+import { Navigation } from './components/Navigation/Navigation';
 import { HomePage } from './components/HomePage';
 import { ItemDashboard } from './components/ItemsDashboard/ItemDashboard';
 import { ItemDetails} from './components/ItemDetails/ItemDetails'

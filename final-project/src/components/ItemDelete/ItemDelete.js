@@ -58,29 +58,25 @@ return (
             </header>
 
 
-            <form className="user-form" onSubmit = {onSubmitHandler}>
-
-            <div className="form-error">
-                <p>Last name should be at least 3 characters long!</p>
-            </div>
+            <form className={styles["user-form"]} onSubmit = {onSubmitHandler}>
 
             
-                <div className="form-row">
+                <div className={styles["form-row"]}>
 
-            <button className="btn-close" onClick={backingFunc}>
+            <button className={styles["btn-close"]} onClick={backingFunc}>
                 X
             </button>
             
-            <div className="profilepicture-wraper">
+            <div className={styles["tumbnailpicture-frame"]}>
                 <img className="tumbnailpicture-frame" src='https://static.thenounproject.com/png/4460304-200.png' alt='tumbnail icon'/>
             </div>
-                <div className="form-group">
+                <div className={styles["form-group"]}>
                 <label htmlFor="firstName">Title</label>
                 <div className="input-wrapper">
                     <span>
                     <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="title" name="title" type="text" onChange={onChangeHandler} value={values.title} disabled={true}/>
+                    <input className={styles["form-input"]} id="title" name="title" type="text" onChange={onChangeHandler} value={values.title} disabled={true}/>
                 </div>
                 </div>
 
@@ -90,33 +86,33 @@ return (
                 
 
 
-            <div className="form-group">
+            <div className={styles["form-group"]}>
                 <label htmlFor="email">Description</label>
                 <div className="input-wrapper">
                     <span>
                     <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} disabled={true}/>
+                    <input className={styles["form-input"]} id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} disabled={true}/>
                 </div>
                 </div>
 
-                <div className="form-group">
+                <div className={styles["form-group"]}>
                 <label htmlFor="firstName">ImageUrl</label>
                 <div className="input-wrapper">
                     <span>
                     <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="imageUrl" name="imageUrl" type="text"  onChange={onChangeHandler} value={values.imageUrl} disabled={true}/>
+                    <input className={styles["form-input"]} id="imageUrl" name="imageUrl" type="text"  onChange={onChangeHandler} value={values.imageUrl} disabled={true}/>
                 </div>
                 </div>
 
-                <div className="form-group">
+                <div className={styles["form-group"]}>
                 <label htmlFor="Passowrd">keywords to describe video</label>
                 <div className="input-wrapper">
                     <span>
                     <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className="form-input" id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} disabled={true}/>
+                    <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} disabled={true}/>
                 </div>
                 </div>
 
@@ -124,10 +120,10 @@ return (
 
 
                 <div id="form-actions">
-                <button id="action-save" className="btn" type="submit">
+                <button id="action-save" className={styles["btn"]} type="submit">
                 Delete
                 </button>
-                <button id="action-cancel" className="btn" type="button" onClick={backingFunc}>
+                <button id="action-cancel" className={styles["btn"]} type="button" onClick={backingFunc}>
                 Cancel
                 </button>
             </div>

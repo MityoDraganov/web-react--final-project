@@ -3,13 +3,14 @@ import styles from "./Comment.module.css"
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import { Link } from "react-router-dom";
 
 export const Comment = ({comment}) =>{
 
 
     const {userId} = useContext(AuthContext)
 
-
+    console.log(comment)
 
 
     if(comment !== undefined){
@@ -22,8 +23,8 @@ export const Comment = ({comment}) =>{
                 <p className={styles["comment-author"]}>{comment.authorId.firstName}</p>
                 <p className={styles["comment-message"]}>{comment.comment}</p>
             </div>
-            <button>Edit</button>
-            <button>Delete</button>
+            <button className={styles['comment-btn']}><Link className="comment-a" to={`/comments/edit/$`}>Edit</Link></button>
+            <button className={styles['comment-btn']}><Link className="comment-a" to={`/comments/delete/$`}>Delete</Link></button>
         </div>
     )
     } else{
