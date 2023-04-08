@@ -10,6 +10,7 @@
 
     import { NavContext } from "../../contexts/NavContext";
     import { useContext } from "react";
+    import { AuthContext } from "../../contexts/AuthContext";
 
     import { itemValidationService } from "../../service/itemValidationService";
 
@@ -18,6 +19,9 @@
         const {id} = useParams()
         const {navigate, onBackHangler} = useContext(NavContext)
 
+        
+
+        const {token} = useContext(AuthContext)
 
         const [values, setValues] = useState({
             title: '',
@@ -48,7 +52,7 @@
         if(isValid){
             
             
-            const response = await editItem(values, id)
+            const response = await editItem(values, id, token)
             console.log("response")
             console.log(response)
             navigate(`/articles/${id}`)
@@ -81,9 +85,7 @@
                     <div className={styles["form-group"]}>
                     <label htmlFor="firstName">Title</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-user"></i>
-                        </span>
+
                         <input className={styles["form-input"]} id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
                     </div>
                     </div>
@@ -97,9 +99,7 @@
                 <div className={styles["form-group"]}>
                     <label htmlFor="email">Description</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-envelope"></i>
-                        </span>
+
                         <input className={styles["form-input"]} id="description" name="description" type="text" onChange={onChangeHandler} value={values.description}/>
                     </div>
                     </div>
@@ -107,9 +107,7 @@
                     <div className={styles["form-group"]}>
                     <label htmlFor="firstName">ImageUrl</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-user"></i>
-                        </span>
+
                         <input className={styles["form-input"]} id="imageUrl" name="imageUrl" type="text"  onChange={onChangeHandler} value={values.imageUrl}/>
                     </div>
                     </div>
@@ -117,9 +115,7 @@
                     <div className={styles["form-group"]}>
                     <label htmlFor="Passowrd">keywords to describe video</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-envelope"></i>
-                        </span>
+
                         <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords}/>
                     </div>
                     </div>

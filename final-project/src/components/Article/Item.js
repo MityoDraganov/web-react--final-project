@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { DetailedItemContext } from "../../contexts/DetailedItemContext"
+import { DetailedItemContext } from "../../contexts/[del]"
 
 import { getOneItem } from "../../service/itemsService"
 import styles from "./Item.module.css"

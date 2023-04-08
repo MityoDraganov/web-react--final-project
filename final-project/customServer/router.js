@@ -1,10 +1,14 @@
-const Router = require('express').Router()
-
-//controlers
+// Import dependencies
+const express = require('express');
+const Router = express.Router();
+const itemControler = require("./controlers/itemControler");
 const userControler = require("./controlers/userControler")
-const itemControler = require("./controlers/itemControler")
 
-//AUTH
+const {authMiddleware} = require("./middlewears/tokenVerifier")
+
+// Routes
+
+
 Router.post('/users/register', (req,res)=>{
     userControler.userCreationPost(req,res)
 })
@@ -14,69 +18,19 @@ Router.post('/users/login', (req,res)=>{
 })
 
 
-//item create
-Router.post('/items/create', (req,res)=>{
-
-    itemControler.itemPost(req,res)
-
-})
-//item edit
-Router.put('/items/edit/:id', (req,res)=>{
-
-    itemControler.itemEdit(req,res)
-
-})
-//item delete
-Router.delete('/items/delete/:id', (req, res) => {
-    itemControler.itemDelete(req,res)
-})
+Router.get('/items', itemControler.getAllItems);
+Router.get('/items/:id', itemControler.getOneItem);
+Router.get('/items/MyArticles/:id', itemControler.getMyArticlesAndComments);
+Router.get('/items/search/:keyword([^/]+)', itemControler.getItemsBySearch);
+Router.post('/items/create', authMiddleware, itemControler.itemPost);
+Router.put('/items/edit/:id', authMiddleware, itemControler.itemEdit);
+Router.delete('/items/delete/:id', authMiddleware, itemControler.itemDelete);
 
 
+Router.post('/comments/:id', authMiddleware, itemControler.postComment);
+Router.put('/comments/edit/:id', authMiddleware, itemControler.editComment);
+Router.delete('/comments/delete/:id', authMiddleware, itemControler.deleteComment);
+Router.get('/comments/:id', itemControler.getOneComment);
 
-//get one item
-
-Router.get('/items/:id', (req, res) =>{
-    itemControler.getOneItem(req, res)
-})
-
-Router.get('/items/MyArticles/:id', (req, res) =>{
-    itemControler.getMyArticlesAndComments(req,res)
-})
-
-
-
-//get all items
-Router.get('/items', (req, res) =>{
-    itemControler.getAllItems(req, res)
-})
-
-//get items by search
-Router.get("/items/search/:keyword", (req, res) =>{
-    itemControler.getItemsBySearch(req, res)
-})
-
-//post comment
-
-Router.post('/comments/:id', (req, res) =>{
-    itemControler.postComment(req, res)
-})
-
-
-//edit comment
-Router.put('/comments/edit/:id', (req, res) =>{
-    itemControler.editComment(req,res)
-})
-
-
-//delete comment
-Router.delete('/comments/delete/:id', (req, res) =>{
-    itemControler.deleteComment(req, res)
-})
-
-//get one comment
-Router.get('/comments/:id', (req, res) =>{
-    itemControler.getOneComment(req, res)
-})
-
-
-module.exports = Router
+// Export router
+module.exports = Router;

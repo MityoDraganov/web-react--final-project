@@ -72,8 +72,16 @@ const getAllItems = async (req, res) =>{
 //get items by search
 const getItemsBySearch = async (req , res) =>{
   const keyword = req.params.keyword
-  if(keyword !== undefined) {
+
+  if (!keyword || keyword.trim().length === 0) {
+    return res.status(400).json({ message: 'Invalid search keyword' });
+  }
+  
+  if(keyword !== undefined && keyword.length > 0) {
   try {
+
+    
+
     const articles = await articlesModel.find({
       keywords: {
         $regex: keyword,
@@ -86,8 +94,9 @@ const getItemsBySearch = async (req , res) =>{
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
-
+  
 }
+
 
 }
 

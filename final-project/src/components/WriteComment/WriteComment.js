@@ -12,7 +12,7 @@ export const WriteComment = () => {
     const {id} = useParams()
 
     const {navigate, onBackHangler} = useContext(NavContext)
-    const {userId} = useContext(AuthContext)
+    const {userId, token} = useContext(AuthContext)
 
     const [values, setValues] = useState({
       message: ''
@@ -27,7 +27,7 @@ export const WriteComment = () => {
 
       values.userId = userId
 
-      const response = await postComment(values, id)
+      const response = await postComment(values, id, token)
       console.log(response)
 
       onBackHangler()
@@ -57,9 +57,7 @@ export const WriteComment = () => {
                 <div className="form-group">
                   <label htmlFor="firstName">Message</label>
                   <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-user"></i>
-                    </span>
+
                     <input className={styles["form-input"]} id="message" name="message" type="text" onChange={onChangeHandler} value={values.message}/>
                   </div>
                 </div>

@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { NavContext } from "../../contexts/NavContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
+
 import { editComment, getOneComment } from "../../service/commentSerivce";
 
 export const CommentEdit = () => {
@@ -18,6 +20,11 @@ export const CommentEdit = () => {
         comment: "",
     })
 
+    
+
+    const {token} = useContext(AuthContext)
+
+
     useEffect(()=>{
         const fetchData = async () =>{
             const comment = await getOneComment(id)
@@ -30,7 +37,7 @@ export const CommentEdit = () => {
     const onSubmitHandler = async (e) =>{
         e.preventDefault()
         
-        const response = await editComment(data, id)
+        const response = await editComment(data, id, token)
         console.log(response)
         onBackHangler()
     }
@@ -56,9 +63,7 @@ export const CommentEdit = () => {
                     <div className={styles["form-group"]}>
                     <label htmlFor="firstName">Message:</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-user"></i>
-                        </span>
+
                         <input className={styles["form-input"]} id="comment" name="comment" type="text" onChange={onChangeHandler} value={data.comment}/>
                     </div>
                     </div>

@@ -4,11 +4,11 @@ import {useState} from "react"
 
 
 import {createItem} from "../../service/itemsService"
-import {useNavigate} from "react-router-dom"
+
 
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
 
+import { AuthContext } from "../../contexts/AuthContext";
 import { NavContext } from "../../contexts/NavContext";
 
 import { itemValidationService } from "../../service/itemValidationService";
@@ -19,7 +19,9 @@ export const ItemCreate = () => {
   const {navigate, onBackHangler} = useContext(NavContext)
 
 
-  const {userId} = useContext(AuthContext)
+
+
+  const {userId, token} = useContext(AuthContext)
 
   const [values, setValues] = useState({
     title: "",
@@ -42,7 +44,7 @@ export const ItemCreate = () => {
     if(isValidData){
 
       
-      const response = await createItem('POST', values)
+      const response = await createItem('POST', values, token)
       console.log("response")
       console.log(response)
       navigate("/articles/dashboard")
@@ -81,9 +83,7 @@ export const ItemCreate = () => {
                 <div className={styles["form-group"]}>
                   <label htmlFor="firstName">Title</label>
                   <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-user"></i>
-                    </span>
+
                     <input className={styles["form-input"]} id="title" name="title" type="text" onChange={onChangeHandler} value={values.title}/>
                   </div>
                 </div>
@@ -97,9 +97,7 @@ export const ItemCreate = () => {
               <div className={styles["form-group"]}>
                   <label htmlFor="email">Description</label>
                   <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-envelope"></i>
-                    </span>
+ 
                     <input className={styles["form-input"]} id="description" name="description" type="text" onChange={onChangeHandler} value={values.description} />
                   </div>
                 </div>
@@ -107,9 +105,7 @@ export const ItemCreate = () => {
                 <div className={styles["form-group"]}>
                   <label htmlFor="firstName">ImageUrl</label>
                   <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-user"></i>
-                    </span>
+
                     <input className={styles["form-input"]} id="imageUrl" name="imageUrl" type="text" onChange={onChangeHandler} value={values.imageUrl} />
                   </div>
                 </div>
@@ -117,9 +113,7 @@ export const ItemCreate = () => {
                 <div className={styles["form-group"]}>
                   <label htmlFor="Passowrd">keywords to describe video</label>
                   <div className="input-wrapper">
-                    <span>
-                      <i className="fa-solid fa-envelope"></i>
-                    </span>
+
                     <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} placeholder="word1, word2, ... " />
                   </div>
                 </div>

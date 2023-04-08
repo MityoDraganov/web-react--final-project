@@ -29,3 +29,13 @@ export const itemValidationService = (data) => {
 
     return true
 }
+
+export const searchValidationService = (keyword) =>{
+    if(keyword !== ''){
+        return true
+    } else{
+        toast("keyword can`t be an empty string")
+        return false
+    }
+
+}

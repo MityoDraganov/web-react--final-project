@@ -3,8 +3,10 @@ import styles from "./CommentDelete.module.css"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
+import { AuthContext } from "../../contexts/AuthContext";
 import { NavContext } from "../../contexts/NavContext";
 import { useContext } from "react";
+
 import { deleteComment, getOneComment } from "../../service/commentSerivce";
 
 export const CommentDelete = () => {
@@ -17,6 +19,9 @@ export const CommentDelete = () => {
     const [data, setData] = useState({
         comment: "",
     })
+    
+
+  const {token} = useContext(AuthContext)
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -30,7 +35,7 @@ export const CommentDelete = () => {
     const onSubmitHandler = async (e) =>{
         e.preventDefault()
         
-        const response = await deleteComment(id)
+        const response = await deleteComment(id, token)
         onBackHangler()
     }
 
@@ -55,9 +60,6 @@ export const CommentDelete = () => {
                     <div className={styles["form-group"]}>
                     <label htmlFor="firstName">Message:</label>
                     <div className="input-wrapper">
-                        <span>
-                        <i className="fa-solid fa-user"></i>
-                        </span>
                         <input className={styles["form-input"]} id="comment" name="comment" type="text" onChange={onChangeHandler} value={data.comment} disabled={true}/>
                     </div>
                     </div>

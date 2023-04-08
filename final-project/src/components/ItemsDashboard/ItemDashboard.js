@@ -31,7 +31,10 @@ export const ItemDashboard = () =>{
 
     if(articles.length === 0){
         return(
+          <ArticlesContext.Provider value={ArticlesContextValue}>
+            <Search />
             <NoArticlesYet />
+          </ArticlesContext.Provider>
         )
     }
     
