@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const baseURL = "http://localhost:3030/items"
 
 
@@ -50,17 +52,7 @@ export const deleteItem = async (body,id) =>{
     return data
 }
 
-export const postComment = async (body, id) =>{
-    const response = await fetch(`${baseURL}/comment/${id}`,{
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers:{
-            "Content-type": "application/json"
-        }
-    })
-    const data = await response.json()
-    return data
-}
+
 
 
 
@@ -68,4 +60,19 @@ export const getOneItem = async (id) =>{
     const response = await fetch(`${baseURL}/${id}`)
     const data = await response.json()
     return data
+}
+
+
+export const getBySearch = async (keyword) =>{
+    try{
+    const response = await fetch(`${baseURL}/search/${keyword}`, {
+    method: 'GET'
+})
+    const data = response.json()
+
+    return data
+    } catch(err){
+        toast("Error: " + err)
+        return
+    }
 }

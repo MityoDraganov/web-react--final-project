@@ -1,9 +1,11 @@
+import styles from "./WriteCommet.module.css"
+
 import { useState } from "react"
 import {useParams} from "react-router-dom"
 
 import { useContext } from "react";
 import { NavContext } from "../../contexts/NavContext";
-import { postComment } from "../../service/itemsService";
+import { postComment } from "../../service/commentSerivce";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export const WriteComment = () => {
@@ -42,13 +44,13 @@ export const WriteComment = () => {
             </header>
 
 
-            <form className="user-form" onSubmit = {onSubmitHandler}>
+            <form className={styles["user-form"]} onSubmit = {onSubmitHandler}>
 
 
             
-                <div className="form-row">
+            <div className={styles["form-row"]}>
 
-              <button className="btn-close" type="button" onClick={onBackHangler}>
+              <button className={styles["btn-close"]} type="button" onClick={onBackHangler}>
                 X
               </button>
 
@@ -58,7 +60,7 @@ export const WriteComment = () => {
                     <span>
                       <i className="fa-solid fa-user"></i>
                     </span>
-                    <input className="form-input" id="message" name="message" type="text" onChange={onChangeHandler} value={values.message}/>
+                    <input className={styles["form-input"]} id="message" name="message" type="text" onChange={onChangeHandler} value={values.message}/>
                   </div>
                 </div>
 
@@ -66,10 +68,10 @@ export const WriteComment = () => {
 
 
                 <div id="form-actions">
-                <button id="action-save" className="btn" type="submit">
+                <button id="action-save" className={styles["btn"]} type="submit">
                   Post
                 </button>
-                <button id="action-cancel" className="btn" type="button" onClick={onBackHangler}>
+                <button id="action-cancel" className={styles["btn"]} type="button" onClick={onBackHangler}>
                   Cancel
                 </button>
               </div>

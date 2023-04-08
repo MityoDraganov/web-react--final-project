@@ -31,3 +31,9 @@
     font-size: 0.875rem;
     margin: 0;
 }
+
+
+.comment-btn{
+    border-radius: 25px;
+    height: 30px;
+}

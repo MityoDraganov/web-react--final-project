@@ -4,6 +4,9 @@ import {getAllItems} from "../../service/itemsService"
 import { NoArticlesYet } from "../NoArticlesYet/NoArticlesYet";
 
 import styles from "./ItemDashboard.module.css"
+import { Search } from "../Search/Search";
+
+import { ArticlesContext } from "../../contexts/ArticlesContext";
 
 export const ItemDashboard = () =>{
 
@@ -19,6 +22,11 @@ export const ItemDashboard = () =>{
 
     }, [])
 
+    const ArticlesContextValue = {
+      setArticles,
+      articles
+    }
+
     
 
     if(articles.length === 0){
@@ -28,6 +36,9 @@ export const ItemDashboard = () =>{
     }
     
     return (
+        <>
+        <ArticlesContext.Provider value={ArticlesContextValue}>
+        <Search />
         <div className={styles.container}>
           {articles.map((x) => {
             return (
@@ -37,6 +48,8 @@ export const ItemDashboard = () =>{
             );
           })}
         </div>
+        </ArticlesContext.Provider>
+        </>
       );
       
 }

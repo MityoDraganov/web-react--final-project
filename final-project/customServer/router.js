@@ -31,9 +31,6 @@ Router.delete('/items/delete/:id', (req, res) => {
     itemControler.itemDelete(req,res)
 })
 
-Router.post('/items/comment/:id', (req, res) =>{
-    itemControler.postComment(req, res)
-})
 
 
 //get one item
@@ -52,5 +49,34 @@ Router.get('/items/MyArticles/:id', (req, res) =>{
 Router.get('/items', (req, res) =>{
     itemControler.getAllItems(req, res)
 })
+
+//get items by search
+Router.get("/items/search/:keyword", (req, res) =>{
+    itemControler.getItemsBySearch(req, res)
+})
+
+//post comment
+
+Router.post('/comments/:id', (req, res) =>{
+    itemControler.postComment(req, res)
+})
+
+
+//edit comment
+Router.put('/comments/edit/:id', (req, res) =>{
+    itemControler.editComment(req,res)
+})
+
+
+//delete comment
+Router.delete('/comments/delete/:id', (req, res) =>{
+    itemControler.deleteComment(req, res)
+})
+
+//get one comment
+Router.get('/comments/:id', (req, res) =>{
+    itemControler.getOneComment(req, res)
+})
+
 
 module.exports = Router

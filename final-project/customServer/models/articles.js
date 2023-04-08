@@ -10,9 +10,9 @@ const userSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
     },  
-    keywords: {
-        type: String,
-    },
+    keywords: [
+        
+    ],
     author: {
         required: true,
         type: mongoose.Types.ObjectId,

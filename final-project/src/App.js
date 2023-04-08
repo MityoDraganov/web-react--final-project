@@ -25,6 +25,8 @@ import { AuthContext } from './contexts/AuthContext';
 import { NavContext } from './contexts/NavContext';
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute"
 import { WriteComment } from './components/WriteComment/WriteComment';
+import { CommentEdit } from './components/CommentEdit/CommentEdit';
+import { CommentDelete } from './components/CommentDelete/CommentDelete';
 
 
 function App() {
@@ -79,8 +81,12 @@ function App() {
         <Route path="/articles/create" element={<PrivateRoute component={ItemCreate}/>} />
         <Route path="/articles/edit/:id" element={<PrivateRoute component={ItemEdit} />} />
         <Route path="/articles/delete/:id" element={<PrivateRoute component={ItemDelete} />} />
+
         <Route path="/articles/MyArticles/:id" element={<PrivateRoute component={MyArticles} />} />
+
         <Route path="/articles/writeComment/:id" element={<PrivateRoute component={WriteComment} />} />
+        <Route path="/comments/edit/:id" element={<PrivateRoute component={CommentEdit} />} />
+        <Route path="/comments/delete/:id" element={<PrivateRoute component={CommentDelete} />} />
       </Routes> 
     </AuthContext.Provider>
     </NavContext.Provider>

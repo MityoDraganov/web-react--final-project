@@ -56,8 +56,8 @@ export const ItemDetails =  () => {
 
             
             <div>
-                <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/edit/${id}`}>Edit</Link></button>
-                <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/delete/${id}`}>Delete</Link></button>
+                <Link className="details-item-a" to={`/articles/edit/${id}`}><button className={styles['details-item-btn']}>Edit</button></Link>
+                <Link className="details-item-a" to={`/articles/delete/${id}`}><button className={styles['details-item-btn']}>Delete</button></Link>
             </div>
     
             <footer>
@@ -101,7 +101,7 @@ export const ItemDetails =  () => {
 
 
 
-            <button className={styles['details-item-btn']}><Link className="details-item-a" to={`/articles/writeComment/${id}`}>Write a comment</Link></button>
+            <Link className="details-item-a" to={`/articles/writeComment/${id}`}><button className={styles['details-item-btn']}>Write a comment</button></Link>
          
     
             <footer>

@@ -23,8 +23,8 @@ export const Comment = ({comment}) =>{
                 <p className={styles["comment-author"]}>{comment.authorId.firstName}</p>
                 <p className={styles["comment-message"]}>{comment.comment}</p>
             </div>
-            <button className={styles['comment-btn']}><Link className="comment-a" to={`/comments/edit/$`}>Edit</Link></button>
-            <button className={styles['comment-btn']}><Link className="comment-a" to={`/comments/delete/$`}>Delete</Link></button>
+            <Link className="comment-a" to={`/comments/edit/${comment._id}`}><button className={styles['comment-btn']}>Edit</button></Link>
+            <Link className="comment-a" to={`/comments/delete/${comment._id}`}><button className={styles['comment-btn']}>Delete</button></Link>
         </div>
     )
     } else{

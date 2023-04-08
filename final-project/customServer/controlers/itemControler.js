@@ -6,12 +6,15 @@ const itemPost = async(req,res) =>{
     console.log(req.body)
     const data = req.body
 
+    const keywords = data.keywords.split(", ")
+
     const article =  await articlesModel.create({
         title: data.title,
         description: data.description,
         imageUrl: data.imageUrl,
         keywords: data.keywords,
-        author: data.userId
+        author: data.userId,
+        keywords: keywords
     })
     await article.save()
     res.send(article)
@@ -64,6 +67,28 @@ const getAllItems = async (req, res) =>{
     const items = await articlesModel.find()
     console.log(items)
     res.send(JSON.stringify(items))
+}
+
+//get items by search
+const getItemsBySearch = async (req , res) =>{
+  const keyword = req.params.keyword
+  if(keyword !== undefined) {
+  try {
+    const articles = await articlesModel.find({
+      keywords: {
+        $regex: keyword,
+        $options: 'i' // case-insensitive search
+      }
+    }).populate('author')
+    .populate('comments')
+
+    res.status(200).json(articles);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+
+}
+
 }
 
 const getMyArticlesAndComments = async (req, res) =>{
@@ -124,8 +149,76 @@ const getOneItem = async (req,res) =>{
     res.send(JSON.stringify(item))
 }
 
+  const getOneComment = async(req, res) =>{
+    const commentId = req.params.id;
+
+    try {
+      const article = await articlesModel.findOne({'comments._id': commentId});
+
+      if (!article) {
+        return res.status(404).send('Comment not found');
+      }
+
+      const comment = article.comments.find(comment => comment._id.toString() === commentId.toString());
+      
+
+
+      if (!comment) {
+        return res.status(404).send('Comment not found');
+      }
+
+      console.log('comment')
+      console.log(comment)
+
+      res.send(JSON.stringify(comment));
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+
+  }
+
+  const editComment = async(req, res) =>{
+    const commentId = req.params.id;
+    const commentData = req.body;
+
+    try {
+        const article = await articlesModel.findOneAndUpdate(
+            {"comments._id": commentId},
+            {"$set": {"comments.$.comment": commentData.comment}},
+            {new: true}
+        ).populate("comments.authorId", "firstName lastName email imageUrl").lean();
+
+        res.send(JSON.stringify(article));
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+  }
+
+  const deleteComment = async (req, res) => {
+    try {
+      const article = await articlesModel.findOneAndUpdate(
+        { "comments._id": req.params.id },
+        { $pull: { comments: { _id: req.params.id } } },
+        { new: true }
+      );
+      if (!article) {
+        return res.status(404).json({ message: "Article not found" });
+      }
+      res.json(article);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  };
+  
+  
 
 
 
 
-module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticlesAndComments, postComment, }
+
+module.exports = {itemPost, getAllItems, getOneItem, itemEdit, itemDelete, getMyArticlesAndComments, getItemsBySearch, postComment, getOneComment, editComment, deleteComment}

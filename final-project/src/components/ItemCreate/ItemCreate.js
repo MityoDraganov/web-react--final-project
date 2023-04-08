@@ -120,7 +120,7 @@ export const ItemCreate = () => {
                     <span>
                       <i className="fa-solid fa-envelope"></i>
                     </span>
-                    <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} />
+                    <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} placeholder="word1, word2, ... " />
                   </div>
                 </div>
 

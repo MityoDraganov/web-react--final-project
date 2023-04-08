@@ -29,7 +29,7 @@ export const Navigation = () => {
                     <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="">Home</Link></li>
                     <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="articles/dashboard">Dashboard</Link></li>
                     <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to="articles/create">Create article</Link></li>
-                    <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to= {`articles/MyArticles/${userId}`}>My Articles</Link></li>
+                    <li className={styles['navigation-li']} ><Link className={styles['navigation-a']} to= {`articles/MyArticles/${userId}`}>My Space</Link></li>
                     <li className={styles['navigation-li']} onClick={() => logoutHandler()}><a className={styles['navigation-a']}>Logout</a></li>
                 </ul>
         
