@@ -8,7 +8,7 @@ import {toast} from "react-toastify"
 
 export const UserLogin = () =>{
   const {setAuth} = useContext(AuthContext)
-  const {navigate, onBackHangler} = useContext(NavContext)
+  const {onBackHangler} = useContext(NavContext)
 
   const [values, setValues]= useState({
     email: '',
@@ -29,7 +29,7 @@ export const UserLogin = () =>{
     console.log('data')
     console.log(data)
 
-    localStorage.setItem("token", data.token)
+    localStorage.setItem("user", JSON.stringify(data))
     setAuth(state => ({...state, token: data.token, _id: data._id}))
     
     onBackHangler()

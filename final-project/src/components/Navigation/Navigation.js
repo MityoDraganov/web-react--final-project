@@ -16,7 +16,7 @@ export const Navigation = () => {
             id: null,
             token: null
         })
-    
+        localStorage.clear()
         navigate("/users/login")
     }
 

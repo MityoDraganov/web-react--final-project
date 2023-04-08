@@ -1,6 +1,6 @@
 
   import './App.css';
-  import { useState } from 'react';
+  import { useEffect, useState } from 'react';
 
   import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -41,6 +41,14 @@
       _id: null,
       token: null,
     })
+
+    useEffect(() =>{
+      if(localStorage.getItem("user") !== null){
+        const dataJSON = localStorage.getItem("user")
+        const data = JSON.parse(dataJSON)
+        setAuth(state => ({...state, token: data.token, _id: data._id}))
+      }
+    }, [])
     
 
     const authContextValues = {

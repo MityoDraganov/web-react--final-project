@@ -1,9 +1,9 @@
 import styles from './UserCreate.module.css';
 
 
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import { userCreate } from '../../service/formFetchService';
-import {Link, useNavigate} from 'react-router-dom'
+
 
 
 import { useContext } from "react";
@@ -15,7 +15,7 @@ import { toast } from "react-toastify"
 export const UserCreate = () => {
 
   const {setAuth} = useContext(AuthContext) 
-  const {navigate, onBackHangler} = useContext(NavContext)
+  const { onBackHangler} = useContext(NavContext)
   
   const [values, setValues] = useState({
     firstName: '',
@@ -69,7 +69,7 @@ export const UserCreate = () => {
     const data = await userCreate(values)
 
     console.log(data)
-    localStorage.setItem("token", data.token)
+    localStorage.setItem("user", JSON.stringify(data))
 
     setAuth(state => ({...state, token: data.token, _id: data._id}))
 
