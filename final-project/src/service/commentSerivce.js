@@ -1,4 +1,8 @@
-const baseURL = "http://localhost:3030/comments"
+//const baseURL = "http://localhost:3030/comments"
+
+const baseURL =  process.env.NODE_ENV === 'development' ?
+"http://localhost:3030/comments"
+: "https://teachnigo.onrender.com/comments"
 
 export const postComment = async (body, id, token) =>{
     const response = await fetch(`${baseURL}/${id}`,{

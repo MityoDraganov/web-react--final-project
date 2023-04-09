@@ -5,8 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 
-export const UserLogout = ({history}) =>{
-    const navigate = useNavigate()
+export const UserLogout = () =>{
 
 
     const {setAuth} = useContext(AuthContext)

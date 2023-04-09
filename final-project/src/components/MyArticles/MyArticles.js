@@ -26,14 +26,17 @@ export const MyArticles = () => {
   const noArticles = myArticlesAndComments.myArticles.length === 0;
   const noComments = myArticlesAndComments.myComments.length === 0;
 
-  if(noArticles && noComments){
-    return(
-      <>
-      <NoArticlesYet />
-      <NoComment />
+  if(noArticles && !noComments){
+    return(    
+      <> 
+        <NoArticlesYet />
+        <h3>My Comments</h3>
+        {myArticlesAndComments.myComments.map((x) => {
+          return <Comment key={x._id} comment={x} />
+        })}
       </>
     )
-  } else if(noComments){
+  } else if(noComments && !noArticles){
     return(
       <>
       <h3>My Articles</h3>
@@ -43,15 +46,35 @@ export const MyArticles = () => {
       <NoComment />
     </>
     )
-  } else{
-    return(    
+  } else if(noArticles && noComments){
+    return(
       <>
-        <NoArticlesYet />
-        <h3>My Comments</h3>
-        {myArticlesAndComments.myComments.map((x) => {
-          return <Comment key={x._id} comment={x} />
-        })}
+        <div>
+        <h1>😔</h1>
+        <h3>No Articles yet...</h3>
+        </div>
+        
+      
+        <div>              
+              <h1>😔</h1>
+              <h3>No Comments yet...</h3>
+
+          </div>
       </>
     )
+  } else{
+    return(
+      <>
+    <h3>My Articles</h3>
+    {myArticlesAndComments.myArticles.map((x) => {
+      return <ItemRenderer {...x} />
+      })}
+
+      <h3>My Comments</h3>
+      {myArticlesAndComments.myComments.map((x) => {
+        return <Comment key={x._id} comment={x} />
+      })}
+      </>
+    )
+    }
   }
-}

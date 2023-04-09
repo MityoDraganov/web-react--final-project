@@ -1,4 +1,10 @@
-const baseUrl = 'http://localhost:3030/users'
+
+
+    //const baseUrl = 'http://localhost:3030/users'
+
+    const baseUrl =  process.env.NODE_ENV === 'development' ?
+    "http://localhost:3030/users"
+    : "https://teachnigo.onrender.com/users"
 
     async function userCreate(body){
     const response = await fetch(`${baseUrl}/register`,{

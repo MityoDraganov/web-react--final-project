@@ -111,7 +111,7 @@ export const ItemCreate = () => {
                 </div>
 
                 <div className={styles["form-group"]}>
-                  <label htmlFor="Passowrd">keywords to describe video</label>
+                  <label htmlFor="Passowrd">keywords</label>
                   <div className="input-wrapper">
 
                     <input className={styles["form-input"]} id="keywords" name="keywords" type="text" onChange={onChangeHandler} value={values.keywords} placeholder="word1, word2, ... " />

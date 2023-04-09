@@ -1,8 +1,10 @@
     import { toast } from "react-toastify";
 
-    const baseURL = "http://localhost:3030/items"
+    const baseURL =  process.env.NODE_ENV === 'development' ?
+    "http://localhost:3030/items"
+    : "https://teachnigo.onrender.com/items"
 
-
+    //const baseURL = "http://localhost:3030/items"
 
 
     export const getAllItems = async () => {
